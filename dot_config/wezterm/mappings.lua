@@ -1,5 +1,5 @@
 local w = require('wezterm')
-local action = w.action
+local act = w.action
 
 local workspace_switcher = require("workspace_switcher.workspace_switcher")
 
@@ -59,13 +59,13 @@ return {
   split_screen("Right", "/"),
   split_screen("Down", "'"),
   { key = "z", mods = "ALT", action = "TogglePaneZoomState" },
-  { key = "d", mods = "ALT", action = action({ CloseCurrentPane = { confirm = false } }) },
+  { key = "d", mods = "ALT", action = act({ CloseCurrentPane = { confirm = false } }) },
 
   -- Pane Navigates
 
   -- Pane Cycles
-  { key = "[", mods = "ALT", action = action({ ActivatePaneDirection = "Prev" }) },
-  { key = "]", mods = "ALT", action = action({ ActivatePaneDirection = "Next" }) },
+  { key = "[", mods = "ALT", action = act({ ActivatePaneDirection = "Prev" }) },
+  { key = "]", mods = "ALT", action = act({ ActivatePaneDirection = "Next" }) },
 
 
   -- TAB Section
@@ -73,7 +73,7 @@ return {
   {
     key = 'R',
     mods = 'CTRL|SHIFT',
-    action = action.PromptInputLine {
+    action = act.PromptInputLine {
       description = 'Enter new name for tab',
       action = w.action_callback(function(window, _, line)
         -- line will be `nil` if they hit escape without entering anything
@@ -86,12 +86,12 @@ return {
     },
   },
   -- TAB Creation
-  { key = 'c', mods = 'CTRL|ALT', action = action.SpawnTab 'CurrentPaneDomain' },
+  { key = 'c', mods = 'CTRL|ALT', action = act.SpawnTab 'CurrentPaneDomain' },
 
   -- TAB Navigation
-  { key = "n", mods = "ALT",      action = action({ ActivateTabRelative = 1 }) },
-  { key = "m", mods = "ALT",      action = action({ ActivateTabRelative = -1 }) },
-  { key = "t", mods = "ALT|CTRL", action = action.ShowTabNavigator },
+  { key = "n", mods = "ALT",      action = act({ ActivateTabRelative = 1 }) },
+  { key = "m", mods = "ALT",      action = act({ ActivateTabRelative = -1 }) },
+  { key = "t", mods = "ALT|CTRL", action = act.ShowTabNavigator },
 
   -- Fullscreen
   { key = "f", mods = "ALT|CTRL", action = "ToggleFullScreen" },
@@ -99,7 +99,7 @@ return {
 
   -- Workspaces
 
-  { key = 'w', mods = 'ALT|CTRL', action = action.ShowLauncherArgs { flags = "FUZZY|WORKSPACES|DOMAINS" } },
+  { key = 'w', mods = 'ALT|CTRL', action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES|DOMAINS" } },
   {
     key = "s",
     mods = "ALT",
@@ -123,5 +123,7 @@ return {
   split_nav('resize', 'j'),
   split_nav('resize', 'k'),
   split_nav('resize', 'l'),
-  { key = 'c', mods = 'CTRL|SHIFT', action = action { CopyTo = 'ClipboardAndPrimarySelection' } },
+  { key = 'c', mods = 'CTRL|SHIFT', action = act { CopyTo = 'ClipboardAndPrimarySelection' } },
+  { key = 'p', mods = 'CTRL',       action = act.ActivateCommandPalette },
+
 }

@@ -10,6 +10,8 @@ if w.config_builder then
   config = w.config_builder()
 end
 
+config.command_palette_bg_color = "#181825"
+config.command_palette_fg_color = "#cdd6f4"
 config.font = w.font_with_fallback({
   "Hack",
   { family = "Symbols Nerd Font Mono", scale = 0.75 }
