@@ -1,0 +1,10 @@
+#!/bin/env bash
+exec rofi \
+    -show p \
+    -modi p:'/usr/bin/rofi-power-menu --choices=shutdown/reboot/logout' \
+    -location 3 \
+    -yoffset 90 \
+    -xoffset -32 \
+    -theme-str 'window {width: 8em; lenght: 3em;} listview {lines: 6;}' \
+    -normal-window \
+    -no-sidebar-mode
