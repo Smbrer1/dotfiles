@@ -189,7 +189,14 @@ require('lazy').setup({
         section_separators = '',
       },
       sections = {
-        lualine_c = { function() return " zina " end },
+        lualine_c = {
+          function()
+            return " zina "
+          end,
+
+          function()
+            return require('auto-session.lib').current_session_name()
+          end },
         lualine_x = { "buffers" }
       },
       extensions = {
@@ -254,6 +261,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
+      'nvim-treesitter/playground',
     },
     build = ':TSUpdate',
   },
@@ -373,6 +381,7 @@ pcall(require('telescope').load_extension, 'harpoon')
 pcall(require('telescope').load_extension, 'repo')
 pcall(require('telescope').load_extension, 'neoclip')
 pcall(require('telescope').load_extension, 'projects')
+pcall(require('telescope').load_extension, 'session-lens')
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').find_files, { desc = '[?] Find current dir files' })
@@ -386,12 +395,16 @@ vim.keymap.set('n', '<leader>/', function()
 end, { desc = '[/] Fuzzily search in current buffer' })
 
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>si', require('telescope.builtin').lsp_implementations,
+  { desc = '[S]earch [I]mplementations' })
+vim.keymap.set('n', '<leader>sd', require('telescope.builtin').lsp_definitions, { desc = '[S]earch [D]efinitions' })
+vim.keymap.set('n', '<leader>sr', require('telescope.builtin').lsp_references, { desc = '[S]earch [R]eferences' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]resume' })
+vim.keymap.set('n', '<leader>sD', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+vim.keymap.set('n', '<leader>sR', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+vim.keymap.set('n', '<leader>ss', "<cmd>Telescope session-lens search_session<cr>", { desc = '[S]earch [S]essions' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -511,6 +524,39 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
 end
+
+
+function scandir(directory)
+  local i, t, popen = 0, {}, io.popen
+  local pfile = popen('ls "' .. directory .. '"')
+  for filename in pfile:lines() do
+    i = i + 1
+    t[i] = filename
+  end
+  pfile:close()
+  return t
+end
+
+local function is_session()
+  local dir = string.match(vim.fn.getcwd(), '.*/(.*)')
+  local session_dirs = scandir('$HOME/.local/share/nvim/sessions/')
+  for _, s_dir in ipairs(session_dirs) do
+    s_dir = string.gsub(s_dir, '%%', '/')
+    s_dir = string.match(s_dir, '.*/([a-zA-Z]*)')
+    if string.find(dir, s_dir) then
+      print(s_dir)
+      print(dir)
+      vim.cmd "SessionRestore"
+      return
+    end
+  end
+  print("ahaha")
+  vim.cmd "Telescope session-lens search_session"
+end
+
+
+vim.api.nvim_create_user_command("AlphaSession", function(_) is_session() end,
+  { desc = 'Attach current session or list sessions depending on curr dir' })
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.

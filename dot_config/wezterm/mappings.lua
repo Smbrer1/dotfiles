@@ -59,7 +59,7 @@ return {
   split_screen("Right", "/"),
   split_screen("Down", "'"),
   { key = "z", mods = "ALT", action = "TogglePaneZoomState" },
-  { key = "d", mods = "ALT", action = act({ CloseCurrentPane = { confirm = false } }) },
+  { key = "q", mods = "ALT", action = act({ CloseCurrentPane = { confirm = false } }) },
 
   -- Pane Navigates
 

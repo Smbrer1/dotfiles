@@ -1,7 +1,7 @@
 local keymap = vim.keymap
 
 -- Floating Comman Line
-keymap.set('n', ':', '<cmd>FineCmdline<CR>', { noremap = true })
+keymap.set('n', '<cmd>', '<cmd>FineCmdline<CR>', { noremap = true })
 
 -- NeoTree Mappings
 keymap.set('n', '<leader>ft', '<cmd> Neotree toggle<cr>', { desc = '[F]ile [T]ree' })
@@ -9,24 +9,20 @@ keymap.set('n', '<leader>gs', '<cmd> Neotree git_status float<cr>', { desc = '[G
 
 -- Tab Navigation
 keymap.set('n', '<leader>nt', 'gt', { desc = "[N]ext [T]ab" })
-keymap.set('n', '<leader>ct', ':tabclose<cr>', { desc = "[C]lose [T]ab" })
+keymap.set('n', '<leader>ct', '<cmd>tabclose<cr>', { desc = "[C]lose [T]ab" })
 
 -- Buffer Navigation
+keymap.set('n', '<leader>cb', "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>", { desc = "[C]lose [B]uffer" })
 -- resizing splits
-keymap.set('n', '<a-h>', require('smart-splits').resize_left)
-keymap.set('n', '<a-j>', require('smart-splits').resize_down)
-keymap.set('n', '<a-k>', require('smart-splits').resize_up)
-keymap.set('n', '<a-l>', require('smart-splits').resize_right)
+keymap.set('n', '<a-c-h>', require('smart-splits').resize_left)
+keymap.set('n', '<a-c-j>', require('smart-splits').resize_down)
+keymap.set('n', '<a-c-k>', require('smart-splits').resize_up)
+keymap.set('n', '<a-c-l>', require('smart-splits').resize_right)
 -- moving between splits
 keymap.set('n', '<c-h>', require('smart-splits').move_cursor_left)
 keymap.set('n', '<c-j>', require('smart-splits').move_cursor_down)
 keymap.set('n', '<c-k>', require('smart-splits').move_cursor_up)
 keymap.set('n', '<c-l>', require('smart-splits').move_cursor_right)
--- swapping buffers between windows
-keymap.set('n', '<leader><leader>h', require('smart-splits').swap_buf_left)
-keymap.set('n', '<leader><leader>j', require('smart-splits').swap_buf_down)
-keymap.set('n', '<leader><leader>k', require('smart-splits').swap_buf_up)
-keymap.set('n', '<leader><leader>l', require('smart-splits').swap_buf_right)
 
 -- Page Navigation
 keymap.set('n', '<c-d>', '<c-d>zz')
@@ -44,12 +40,12 @@ if vim.lsp.inlay_hint then
 end
 
 -- Telescope Extensions
-keymap.set('n', '<leader>hl', ':Telescope harpoon marks<cr>', { desc = 'Telescope [H]arpoon marks [L]ist' })
-keymap.set('n', '<leader>cy', ':Telescope neoclip <cr>', { desc = '[C]hange [Y]ank' })
+keymap.set('n', '<leader>hl', '<cmd>Telescope harpoon marks<cr>', { desc = 'Telescope [H]arpoon marks [L]ist' })
+keymap.set('n', '<leader>cy', '<cmd>Telescope neoclip <cr>', { desc = '[C]hange [Y]ank' })
 
 -- Terminal Management
-keymap.set('n', '<c-t>/', ':ToggleTerm direction=vertical<cr>', { desc = "Open [T]erminal Vertical" })
-keymap.set('n', "<c-t>'", ':ToggleTerm direction=horizontal<cr>', { desc = "Open [T]erminal Horizontal" })
+keymap.set('n', '<c-t>/', '<cmd>ToggleTerm direction=vertical<cr>', { desc = "Open [T]erminal Vertical" })
+keymap.set('n', "<c-t>'", '<cmd>ToggleTerm direction=horizontal<cr>', { desc = "Open [T]erminal Horizontal" })
 keymap.set('t', '<esc>', '<c-\\><c-n>', { noremap = true })
 
 -- Neotest Config
@@ -69,7 +65,7 @@ keymap.set('n', '<silent>]n', '<cmd>lua require("neotest").jump.next({ status = 
   { desc = "Jump to next failed test" })
 
 -- NavBuddy Mappings
-keymap.set('n', '<leader>nb', ":lua require('nvim-navbuddy').open()<cr>", { desc = 'Open [N]av[B]uddy' })
+keymap.set('n', '<leader>nb', "<cmd>lua require('nvim-navbuddy').open()<cr>", { desc = 'Open [N]av[B]uddy' })
 
 -- Trouble Mappings
 keymap.set("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Toggle Trouble" })
@@ -101,4 +97,4 @@ keymap.set('n', '=q', function()
   vim.cmd('botright ' .. action)
 end, noremap_silent)
 
--- vim: ts=2 sts=2 sw=2 et
+-- vim<cmd> ts=2 sts=2 sw=2 et
