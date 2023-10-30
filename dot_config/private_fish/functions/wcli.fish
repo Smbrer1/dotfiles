@@ -1,0 +1,1 @@
+alias wcli="wezterm cli"

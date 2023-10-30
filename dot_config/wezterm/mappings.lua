@@ -1,12 +1,20 @@
+--[[
+███╗   ███╗ █████╗ ██████╗ ██████╗ ██╗███╗   ██╗ ██████╗ ███████╗
+████╗ ████║██╔══██╗██╔══██╗██╔══██╗██║████╗  ██║██╔════╝ ██╔════╝
+██╔████╔██║███████║██████╔╝██████╔╝██║██╔██╗ ██║██║  ███╗███████╗
+██║╚██╔╝██║██╔══██║██╔═══╝ ██╔═══╝ ██║██║╚██╗██║██║   ██║╚════██║
+██║ ╚═╝ ██║██║  ██║██║     ██║     ██║██║ ╚████║╚██████╔╝███████║
+╚═╝     ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝     ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝
+--]]
 local w = require('wezterm')
 local act = w.action
 
+local is_nvim = require('utils').is_nvim
 local workspace_switcher = require("workspace_switcher.workspace_switcher")
+local module = {}
 
-local function is_nvim(pane)
-  -- this is set by the plugin, and unset on ExitPre in Neovim
-  return pane:get_user_vars().IS_NVIM == 'true'
-end
+module.leader = { key = 's', mods = 'CTRL', timeout_milliseconds = 1000 }
+
 
 local direction_keys = {
   Left = 'h',
@@ -55,24 +63,17 @@ local function split_screen(direction, key)
   }
 end
 
-return {
+module.keys = {
   split_screen("Right", "/"),
   split_screen("Down", "'"),
-  { key = "z", mods = "ALT", action = "TogglePaneZoomState" },
-  { key = "q", mods = "ALT", action = act({ CloseCurrentPane = { confirm = false } }) },
-
-  -- Pane Navigates
-
-  -- Pane Cycles
-  { key = "[", mods = "ALT", action = act({ ActivatePaneDirection = "Prev" }) },
-  { key = "]", mods = "ALT", action = act({ ActivatePaneDirection = "Next" }) },
-
+  { key = "z", mods = "ALT",    action = "TogglePaneZoomState" },
+  { key = "q", mods = "LEADER", action = act({ CloseCurrentPane = { confirm = false } }) },
 
   -- TAB Section
   -- Rename TAB
   {
     key = 'R',
-    mods = 'CTRL|SHIFT',
+    mods = 'LEADER',
     action = act.PromptInputLine {
       description = 'Enter new name for tab',
       action = w.action_callback(function(window, _, line)
@@ -86,23 +87,18 @@ return {
     },
   },
   -- TAB Creation
-  { key = 'c', mods = 'CTRL|ALT', action = act.SpawnTab 'CurrentPaneDomain' },
-
+  { key = 'c', mods = 'LEADER',   action = act.SpawnTab 'CurrentPaneDomain' },
   -- TAB Navigation
   { key = "n", mods = "ALT",      action = act({ ActivateTabRelative = 1 }) },
   { key = "m", mods = "ALT",      action = act({ ActivateTabRelative = -1 }) },
   { key = "t", mods = "ALT|CTRL", action = act.ShowTabNavigator },
 
-  -- Fullscreen
-  { key = "f", mods = "ALT|CTRL", action = "ToggleFullScreen" },
-  { key = "n", mods = "ALT|CTRL", action = "SpawnWindow" },
-
   -- Workspaces
 
-  { key = 'w', mods = 'ALT|CTRL', action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES|DOMAINS" } },
+  { key = 'w', mods = 'LEADER',   action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES|DOMAINS" } },
   {
     key = "s",
-    mods = "ALT",
+    mods = "LEADER",
     action = workspace_switcher.workspace_switcher(function(label)
       return w.format({
         { Text = "󱂬: " .. label },
@@ -125,5 +121,28 @@ return {
   split_nav('resize', 'l'),
   { key = 'c', mods = 'CTRL|SHIFT', action = act { CopyTo = 'ClipboardAndPrimarySelection' } },
   { key = 'p', mods = 'CTRL',       action = act.ActivateCommandPalette },
-
+  { key = "m", mods = "LEADER",     action = act.ActivateKeyTable { name = "move_tab", one_shot = false } },
 }
+
+module.key_tables = {
+  move_tab = {
+    { key = "h",      action = act.MoveTabRelative(-1) },
+    { key = "j",      action = act.MoveTabRelative(-1) },
+    { key = "k",      action = act.MoveTabRelative(1) },
+    { key = "l",      action = act.MoveTabRelative(1) },
+    { key = "Escape", action = "PopKeyTable" },
+    { key = "Enter",  action = "PopKeyTable" },
+  }
+}
+
+-- Navigate through tabs with 1-9 keybinds
+for i = 1, 9 do
+  -- ALT + number to activate that tab
+  table.insert(module.keys, {
+    key = tostring(i),
+    mods = 'ALT',
+    action = act.ActivateTab(i - 1),
+  })
+end
+
+return module
