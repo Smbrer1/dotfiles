@@ -76,7 +76,7 @@ w.on("update-status", function(window, pane)
     -- https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html
     { Text = w.nerdfonts.md_folder .. "  " .. cwd },
     { Text = " | " },
-    { Foreground = { Color = "#e0af68" } },
+    { Foreground = { Color = "#a6e3a1" } },
     { Text = w.nerdfonts.fa_code .. "  " .. cmd },
     "ResetAttributes",
     { Text = " | " },
