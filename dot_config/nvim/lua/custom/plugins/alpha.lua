@@ -31,13 +31,13 @@ return {
     -- Set menu
     dashboard.section.buttons.val = {
       dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
-      dashboard.button("f", "  > Find file", ":Telescope find_files<CR>"),
+      dashboard.button("f", "󰈞  > Find file", ":Telescope find_files<CR>"),
       dashboard.button("p", "  > Projects", ":lua require'telescope'.extensions.projects.projects()<CR>"),
       dashboard.button("s", "󰈗  > Sessions", ":AlphaSession<cr>"),
       dashboard.button("w", "  > Find repos",
         ":cd $HOME/Workspace | lua require'telescope'.extensions.repo.list{search_dirs = {'~/Workspace'}} <cr>"),
       dashboard.button("c", "  > Config", ":e $MYVIMRC | :cd %:p:h | wincmd k | pwd<CR> | <cmd> Neotree toggle<cr>"),
-      dashboard.button("q", "  > Quit NVIM", ":qa<CR>"),
+      dashboard.button("q", "󰗼  > Quit NVIM", ":qa<CR>"),
     }
 
     -- Set footer

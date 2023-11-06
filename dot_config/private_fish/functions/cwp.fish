@@ -1,1 +1,1 @@
-alias cwp="feh --bg-fill --randomize ~/wallpapers/i3/"
+alias cwp="feh --bg-fill --randomize ~/wallpapers/wm/"

@@ -9,11 +9,11 @@
 local w = require('wezterm')
 local act = w.action
 
-local is_nvim = require('utils').is_nvim
+local is_nvim = require('utils.utils').is_nvim
 local workspace_switcher = require("workspace_switcher.workspace_switcher")
-local module = {}
+local M = {}
 
-module.leader = { key = 's', mods = 'CTRL', timeout_milliseconds = 1000 }
+M.leader = { key = 's', mods = 'CTRL', timeout_milliseconds = 1000 }
 
 
 local direction_keys = {
@@ -63,11 +63,11 @@ local function split_screen(direction, key)
   }
 end
 
-module.keys = {
+M.keys = {
   split_screen("Right", "/"),
   split_screen("Down", "'"),
-  { key = "z", mods = "ALT",    action = "TogglePaneZoomState" },
-  { key = "q", mods = "LEADER", action = act({ CloseCurrentPane = { confirm = false } }) },
+  { key = "z", mods = "ALT",       action = "TogglePaneZoomState" },
+  { key = "Q", mods = "ALT|SHIFT", action = act({ CloseCurrentPane = { confirm = false } }) },
 
   -- TAB Section
   -- Rename TAB
@@ -124,7 +124,7 @@ module.keys = {
   { key = "m", mods = "LEADER",     action = act.ActivateKeyTable { name = "move_tab", one_shot = false } },
 }
 
-module.key_tables = {
+M.key_tables = {
   move_tab = {
     { key = "h",      action = act.MoveTabRelative(-1) },
     { key = "j",      action = act.MoveTabRelative(-1) },
@@ -138,11 +138,11 @@ module.key_tables = {
 -- Navigate through tabs with 1-9 keybinds
 for i = 1, 9 do
   -- ALT + number to activate that tab
-  table.insert(module.keys, {
+  table.insert(M.keys, {
     key = tostring(i),
     mods = 'ALT',
     action = act.ActivateTab(i - 1),
   })
 end
 
-return module
+return M

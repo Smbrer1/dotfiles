@@ -6,8 +6,8 @@
 ███████║██║  ██║███████╗███████╗███████╗
 ╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝
 --]]
-local module = {}
+local M = {}
 
-module.default_prog = { "/usr/bin/fish" }
+M.default_prog = { "/usr/bin/fish" }
 
-return module
+return M

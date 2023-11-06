@@ -1,5 +1,5 @@
-local module = {}
-module.ssh_domains = {
+local M = {}
+M.ssh_domains = {
   {
     -- This name identifies the domain
     name = '102.server',
@@ -20,4 +20,4 @@ module.ssh_domains = {
   },
 
 }
-return module
+return M
