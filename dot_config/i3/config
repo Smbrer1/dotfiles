@@ -1,5 +1,5 @@
 # i3 config file (v4)
-font pango:JetBrainsMono 14
+font pango:Hack 14
 
 # -- Variables --
 
@@ -49,15 +49,19 @@ set $refresh_i3status killall -SIGUSR1 i3status
 
 # define names for default workspaces for which we configure key bindings later on.
 # we use variables to avoid repeating the names in multiple places.
-set $ws0 "1"
-set $ws1 "2"
-set $ws2 "3"
-set $ws3 "4"
-set $ws4 "5"
-set $ws5 "6"
-set $ws6 "7"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
 
 for_window [class="Rofi" instance="rofi"] floating enable
+for_window [class="Steam"] floating enable
+for_window [class="Steam" title="^Steam$"] floating disable
 # -- Exec --
 
 # start XDG autostart .desktop files using dex. see also
@@ -79,6 +83,7 @@ exec --no-startup-id systemd-inhibit --what=handle-power-key sleep infinity
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id picom
 exec_always --no-startup-id ~/.fehbg
+exec_always "setxkbmap -model pc104 -layout us,ru -variant ,, -option grp:alt_shift_toggle"
 
 # -- Bindings --
 
@@ -105,12 +110,9 @@ bindsym $mod+q kill
 bindsym Control+space exec rofi -show drun -normal-window
 bindsym $mod+Control+r exec rofi -show run -normal-window
 bindsym Mod1+Tab exec rofi -show window -normal-window
-bindsym $mod+v exec ~/.config/rofi/bin/clipboard
 bindsym $mod+Shift+p exec ~/.config/rofi/bin/powermenu
 
-# screenshot bindings
-bindsym Print exec          xfce4-screenshooter -f -s ~/Pictures
-bindsym Shift+Print exec    xfce4-screenshooter -rc
+bindsym Shift+$mod+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -150,22 +152,34 @@ bindsym $mod+d focus child
 
 
 # switch to workspace
-bindsym $mod+1 workspace number $ws0
-bindsym $mod+2 workspace number $ws1
-bindsym $mod+3 workspace number $ws2
-bindsym $mod+4 workspace number $ws3
-bindsym $mod+5 workspace number $ws4
-bindsym $mod+6 workspace number $ws5
-bindsym $mod+7 workspace number $ws5
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws0
-bindsym $mod+Shift+2 move container to workspace number $ws1
-bindsym $mod+Shift+3 move container to workspace number $ws2
-bindsym $mod+Shift+4 move container to workspace number $ws3
-bindsym $mod+Shift+5 move container to workspace number $ws4
-bindsym $mod+Shift+6 move container to workspace number $ws5
-bindsym $mod+Shift+7 move container to workspace number $ws6
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+
+assign [class="org.wezfurlong.wezterm"] $ws1
+assign [class="firefox"] $ws2
+assign [class="chromium"] $ws2
+assign [class="postman"] $ws2
+assign [class="discord"] $ws3
+assign [class="TelegramDesktop"] $ws3
+assign [class="Cisco AnyConnect Secure Mobility Client"] $ws5
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -177,22 +191,31 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
+# resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
-        bindsym h resize shrink width 50 px or 50 ppt
-        bindsym j resize grow height 50 px or 50 ppt
-        bindsym k resize shrink height 50 px or 50 ppt
-        bindsym l resize grow width 50 px or 50 ppt
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape or $mod+r
+        # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
 }
-bindsym $mod+r mode "resize"
 
+bindsym $mod+r mode "resize"
 # bar {
     # position top
     # status_command /usr/bin/bumblebee-status \

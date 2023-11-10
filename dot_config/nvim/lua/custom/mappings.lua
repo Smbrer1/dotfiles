@@ -1,5 +1,7 @@
 local keymap = vim.keymap
 
+keymap.set('i', 'jj', '<Esc>', { noremap = true })
+
 -- Floating Comman Line
 keymap.set('n', '<cmd>', '<cmd>FineCmdline<CR>', { noremap = true })
 

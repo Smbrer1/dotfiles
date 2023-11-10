@@ -168,7 +168,7 @@ require('lazy').setup({
     'catppuccin/nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'catppuccin-frappe'
+      vim.cmd.colorscheme 'catppuccin-mocha'
     end,
     opts = {
       integrations = {
@@ -184,7 +184,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = true,
-        theme = 'catppuccin',
+        theme = 'catppuccin-mocha',
         component_separators = '|',
         section_separators = '',
       },

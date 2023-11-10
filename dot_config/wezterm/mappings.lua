@@ -1,10 +1,10 @@
 --[[
-███╗   ███╗ █████╗ ██████╗ ██████╗ ██╗███╗   ██╗ ██████╗ ███████╗
-████╗ ████║██╔══██╗██╔══██╗██╔══██╗██║████╗  ██║██╔════╝ ██╔════╝
-██╔████╔██║███████║██████╔╝██████╔╝██║██╔██╗ ██║██║  ███╗███████╗
-██║╚██╔╝██║██╔══██║██╔═══╝ ██╔═══╝ ██║██║╚██╗██║██║   ██║╚════██║
-██║ ╚═╝ ██║██║  ██║██║     ██║     ██║██║ ╚████║╚██████╔╝███████║
-╚═╝     ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝     ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝
+  ███╗   ███╗ █████╗ ██████╗ ██████╗ ██╗███╗   ██╗ ██████╗ ███████╗
+  ████╗ ████║██╔══██╗██╔══██╗██╔══██╗██║████╗  ██║██╔════╝ ██╔════╝
+  ██╔████╔██║███████║██████╔╝██████╔╝██║██╔██╗ ██║██║  ███╗███████╗
+  ██║╚██╔╝██║██╔══██║██╔═══╝ ██╔═══╝ ██║██║╚██╗██║██║   ██║╚════██║
+  ██║ ╚═╝ ██║██║  ██║██║     ██║     ██║██║ ╚████║╚██████╔╝███████║
+  ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝     ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝
 --]]
 local w = require('wezterm')
 local act = w.action
@@ -66,8 +66,8 @@ end
 M.keys = {
   split_screen("Right", "/"),
   split_screen("Down", "'"),
-  { key = "z", mods = "ALT",       action = "TogglePaneZoomState" },
-  { key = "Q", mods = "ALT|SHIFT", action = act({ CloseCurrentPane = { confirm = false } }) },
+  { key = "z", mods = "ALT", action = "TogglePaneZoomState" },
+  { key = "q", mods = "ALT", action = act({ CloseCurrentPane = { confirm = false } }) },
 
   -- TAB Section
   -- Rename TAB
@@ -89,8 +89,8 @@ M.keys = {
   -- TAB Creation
   { key = 'c', mods = 'LEADER',   action = act.SpawnTab 'CurrentPaneDomain' },
   -- TAB Navigation
-  { key = "n", mods = "ALT",      action = act({ ActivateTabRelative = 1 }) },
-  { key = "m", mods = "ALT",      action = act({ ActivateTabRelative = -1 }) },
+  { key = "m", mods = "ALT",      action = act({ ActivateTabRelative = 1 }) },
+  { key = "n", mods = "ALT",      action = act({ ActivateTabRelative = -1 }) },
   { key = "t", mods = "ALT|CTRL", action = act.ShowTabNavigator },
 
   -- Workspaces

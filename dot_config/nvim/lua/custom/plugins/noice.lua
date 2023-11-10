@@ -10,7 +10,7 @@ return {
     -- OPTIONAL:
     --   `nvim-notify` is only needed, if you want to use the notification view.
     --   If not available, we use `mini` as the fallback
-    -- 'rcarriga/nvim-notify',
+    'rcarriga/nvim-notify',
   },
   config = function()
     require('noice').setup {
@@ -31,5 +31,8 @@ return {
         lsp_doc_border = false,       -- add a border to hover docs and signature help
       },
     }
+    require('notify').setup({
+      background_colour = "#181825",
+    })
   end,
 }
