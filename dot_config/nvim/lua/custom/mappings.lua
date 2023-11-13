@@ -6,7 +6,7 @@ keymap.set('i', 'jj', '<Esc>', { noremap = true })
 keymap.set('n', '<cmd>', '<cmd>FineCmdline<CR>', { noremap = true })
 
 -- NeoTree Mappings
-keymap.set('n', '<leader>ft', '<cmd> Neotree toggle<cr>', { desc = '[F]ile [T]ree' })
+keymap.set('n', '<leader>ft', '<cmd> Telescope file_browser<cr>', { desc = '[F]ile [T]ree' })
 keymap.set('n', '<leader>gs', '<cmd> Neotree git_status float<cr>', { desc = '[G]it [S]tatus' })
 
 -- Tab Navigation
@@ -82,6 +82,15 @@ keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end
 
 -- DataBase Integration
 keymap.set('n', "<leader>db", "<cmd>DBUIToggle<cr>", { desc = "Toggle [D]ata [B]ase UI" })
+
+
+-- Pytest Jump to fixture
+keymap.set('n', "gF", "<cmd>PytrizeJumpFixture<cr>", { desc = "[J]ump to [F]ixture defenition" })
+
+-- Task Runner mappings
+keymap.set('n', '<leader>tt', '<cmd>Telescope tasks<cr>', { desc = "Open [T]elescope [T]asks" })
+
+keymap.set('n', '<leader>rc', '<cmd>CellularAutomaton make_it_rain<cr>', { desc = "[R]uin [C]ode" })
 
 -- QuickFix and LocationList
 local noremap_silent = { noremap = true, silent = true, desc = "Toggle List" }

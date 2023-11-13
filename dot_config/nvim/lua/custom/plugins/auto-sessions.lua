@@ -17,12 +17,12 @@ return {
       auto_restore_enabled = false,
       auto_save_enabled = true,
       auto_session_enabled = true,
-      pre_save_cmds = {
-        close_neo_tree,
-      },
-      post_restore_cmds = {
-        open_neo_tree,
-      },
+      -- pre_save_cmds = {
+      --   close_neo_tree,
+      -- },
+      -- post_restore_cmds = {
+      --   open_neo_tree,
+      -- },
     }
   end
 }

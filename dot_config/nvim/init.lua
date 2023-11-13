@@ -43,6 +43,11 @@ P.S. You can delete this when you're done too. It's your config now :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+if vim.g.neovide then
+  vim.o.guifont = "Hack:h12"
+  vim.g.neovide_cursor_vfx_mode = "pixiedust"
+end
+
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -67,6 +72,22 @@ vim.opt.rtp:prepend(lazypath)
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
+  -- Task runner
+  { -- The task runner we use
+    "stevearc/overseer.nvim",
+    commit = "400e762648b70397d0d315e5acaf0ff3597f2d8b",
+    cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
+    opts = {
+      task_list = {
+        direction = "bottom",
+        min_height = 25,
+        max_height = 25,
+        default_detail = 1
+      },
+    },
+  },
+
+
   'VonHeikemen/fine-cmdline.nvim',
   'numToStr/Navigator.nvim',
   -- NOTE: First, some plugins that don't require any configuration
@@ -382,6 +403,10 @@ pcall(require('telescope').load_extension, 'repo')
 pcall(require('telescope').load_extension, 'neoclip')
 pcall(require('telescope').load_extension, 'projects')
 pcall(require('telescope').load_extension, 'session-lens')
+pcall(require('telescope').load_extension, 'file_browser')
+pcall(require('telescope').load_extension, 'tasks')
+local default_tasks = require('telescope').extensions.tasks.generators.default
+default_tasks.all()
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').find_files, { desc = '[?] Find current dir files' })
@@ -509,7 +534,7 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  nmap('<C-S-K>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')

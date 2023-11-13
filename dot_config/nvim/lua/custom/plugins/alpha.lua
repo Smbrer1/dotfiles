@@ -1,32 +1,40 @@
+local footer = [[
+                                      [ZINA]
+  ▀██████▓▓███████▓▓▓▓███████████▓▓▓▓▓███████▓▓▓▓██▄██████▓▓▓▓▓███████▄█▓▓▓▓██████▀
+   ▐▀▓▓▀     ▀▀▄ ▀▀▀▀▀▀▀▄▀▀▀▀▀▀▀▀■▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█AS██
+    ▐█▀▄      ▄▄ ▀                                                ▄▀▀▀▄▄   █▓▓█▌
+    ▀   ▀▀▄▄▄■   ▀▄           -  N  E  O  V  i  M  -           ■▀       ▀▄▄███▀
+   ▀                                                                         ▀▄
+]]
 return {
   "goolord/alpha-nvim",
-  requires = { 'nvim-tree/nvim-web-devicons' },
-  config = function()
+  event = 'VimEnter',
+  opts = function()
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
 
     -- Set header
-    dashboard.section.header.val = {
-      [[=================     ===============     ===============   ========  ========]],
-      [[\\ . . . . . . .\\   //. . . . . . .\\   //. . . . . . .\\  \\. . .\\// . . //]],
-      [[||. . ._____. . .|| ||. . ._____. . .|| ||. . ._____. . .|| || . . .\/ . . .||]],
-      [[|| . .||   ||. . || || . .||   ||. . || || . .||   ||. . || ||. . . . . . . ||]],
-      [[||. . ||   || . .|| ||. . ||   || . .|| ||. . ||   || . .|| || . | . . . . .||]],
-      [[|| . .||   ||. _-|| ||-_ .||   ||. . || || . .||   ||. _-|| ||-_.|\ . . . . ||]],
-      [[||. . ||   ||-'  || ||  `-||   || . .|| ||. . ||   ||-'  || ||  `|\_ . .|. .||]],
-      [[|| . _||   ||    || ||    ||   ||_ . || || . _||   ||    || ||   |\ `-_/| . ||]],
-      [[||_-' ||  .|/    || ||    \|.  || `-_|| ||_-' ||  .|/    || ||   | \  / |-_.||]],
-      [[||    ||_-'      || ||      `-_||    || ||    ||_-'      || ||   | \  / |  `||]],
-      [[||    `'         || ||         `'    || ||    `'         || ||   | \  / |   ||]],
-      [[||            .===' `===.         .==='.`===.         .===' /==. |  \/  |   ||]],
-      [[||         .=='   \_|-_ `===. .==='   _|_   `===. .===' _-|/   `==  \/  |   ||]],
-      [[||      .=='    _-'    `-_  `='    _-'   `-_    `='  _-'   `-_  /|  \/  |   ||]],
-      [[||   .=='    _-'          '-__\._-'         '-_./__-'         `' |. /|  |   ||]],
-      [[||.=='    _-'                                                     `' |  /==.||]],
-      [[=='    _-'                        [ Z I N A ]                         \/   `==]],
-      [[\   _-'                                                                `-_   /]],
-      [[ `''                                                                      ``' ]],
-    }
+    local header = {
+      '                                      ▄▀                                       ',
+      '                         ░     ░░  ▄█▓▌ ░░ ░   ░                               ',
+      '▄▄    ▀▀▓▓█▄▄▄   ▄▄███▄          ▄▓████▄                   ▄▄    ▀▀▓▓▄▄▄       ',
+      ' ▀▓▓▓▄▄  ▀▓███▓▓▄ ▀██▓▓█▄▄▄    ▄▓▓▓▓█████▄▄    ▄ ■▄▓▄▄      ▀▓▓▓▄▄   ▀███▓▓▄   ',
+      '  ▐▓████▓▄  ▀███▓▓▄ ██▓▌  ▀▓██▄ ▀▀▀████▓▀▀███▄▄▄   ▀████▄▄   ▐▓████▓▓▄ ▀███▓▓▄ ',
+      '   ████▓▓▌   ▐███▓▓▌ ▀▀▀■  ▐█████▓▄ ▀ ▄▄▄████▓▀ ▄▀   █▓███▓▄  ████▓▓▌   ▐███▓▓▌',
+      '   ▐████▓   ▄████▓▀ ▄▓▓▄    ███▓█▌ ▄██████▓▀▀ ▄▓▌    ▐▓████▓▓▄ ▀███▓   ▄████▓▀ ',
+      '    ████▓ ▀▀▀▀▀▀ ▄▄███▀██▄▄ ▐█▓▓▓ ████▓▀▀  ▄██▓▓▌     █▀▓▀██▓▓▌ ███▓■▀██▀▀▀    ',
+      '    ███▓▓▌■▀▓██▄▄ ▀██▄▓▄██▀▀■██▓▌  ▀██▄█▓▄▄ ▀▀█▓▓     ▐█▄███▓▓▌ ██▓▓  ▐███▄▄   ',
+      '   ▐██▓▓▓▓  ▐███▓▓▄ ▀███▀    ██▓▓    ▀█████▓▓▄▄▄      ▐█████▓▓ ▐█▓▓▓   ▓███▓▓▄ ',
+      '  ▄█████▓▓▓▄ ████▓▓▌ ██▓▌   ▐███▓▓     ▀██████▓▓▓▓▀  ▄█████▓▀ ▄████▓▌  ▐████▓▓▌',
+      '■▀▀▀   ▀▀▓▀ ▐█████▓▓ ▐▓▓▓▓▄▄▓████▓▓      ▀███▓▓▀  ■▄▓██▓▓▀▀ ▄█▀   ▀▀▀  ▀▀▀███▓▓',
+      '          ▄▓▓▓███▓▓▓▌ ▀▓▓▀▀     ▀█▓▓       ▓▓▀      ▀▀▀    ▄▀               ▀▀▓',
+      '                ▀▀▀▓▓▄            ▀▓▓▄      ▀▄           ▄                     ',
+      ' <cH!RiGOR>          ▀▓             ▀▓▌        ▀ ■ ▄ ■ ▀     1 9 1 1           ',
+      '                      ▀▄             ▐▌                                        ',
+      '                                                                               ', }
+
+    dashboard.section.header.val = header
+    dashboard.section.footer.val = footer
 
     -- Set menu
     dashboard.section.buttons.val = {
@@ -36,32 +44,45 @@ return {
       dashboard.button("s", "󰈗  > Sessions", ":AlphaSession<cr>"),
       dashboard.button("w", "  > Find repos",
         ":cd $HOME/Workspace | lua require'telescope'.extensions.repo.list{search_dirs = {'~/Workspace'}} <cr>"),
-      dashboard.button("c", "  > Config", ":e $MYVIMRC | :cd %:p:h | wincmd k | pwd<CR> | <cmd> Neotree toggle<cr>"),
+      dashboard.button("c", "  > Config", ":e $MYVIMRC | :cd %:p:h | wincmd k | pwd<CR> "),
       dashboard.button("q", "󰗼  > Quit NVIM", ":qa<CR>"),
     }
 
-    -- Set footer
-    --   NOTE: This is currently a feature in my fork of alpha-nvim (opened PR #21, will update snippet if added to main)
-    --   To see test this yourself, add the function as a dependecy in packer and uncomment the footer lines
-    --   ```init.lua
-    --   return require('packer').startup(function()
-    --       use 'wbthomason/packer.nvim'
-    --       use {
-    --           'goolord/alpha-nvim', branch = 'feature/startify-fortune',
-    --           requires = {'BlakeJC94/alpha-nvim-fortune'},
-    --           config = function() require("config.alpha") end
-    --       }
-    --   end)
-    --   ```
-    -- local fortune = require("alpha.fortune")
-    -- dashboard.section.footer.val = fortune()
 
-    -- Send config to alpha
-    alpha.setup(dashboard.opts)
-
+    for _, button in ipairs(dashboard.section.buttons.val) do
+      button.opts.hl = 'AlphaHeader'
+      button.opts.hl_shortcut = 'AlphaHeader'
+    end
+    dashboard.opts.layout = {
+      dashboard.section.header,
+      -- { type = "padding", val = 4 },
+      dashboard.section.buttons,
+      dashboard.section.footer,
+    }
     -- Disable folding on alpha buffer
     vim.cmd([[
     autocmd FileType alpha setlocal nofoldenable
     ]])
-  end
+    return dashboard
+  end,
+  config = function(_, dashboard)
+    -- close lazy and re-open when the dashboard is ready
+    if vim.o.filetype == 'lazy' then
+      vim.cmd.close()
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'AlphaReady',
+        callback = function()
+          require('lazy').show()
+        end,
+      })
+    end
+    require('alpha').setup(dashboard.opts)
+
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'LazyVimStarted',
+      callback = function()
+        pcall(vim.cmd.AlphaRedraw)
+      end,
+    })
+  end,
 }
