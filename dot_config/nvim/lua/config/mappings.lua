@@ -1,9 +1,9 @@
 local utils = require("utils.functions")
 local map = vim.keymap.set
 
-local mapping = {
-  { "n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true } },
-}
+-- local mapping = {
+--   { "n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true } },
+-- }
 
 map("i", "jj", "<Esc>", { noremap = true })
 
@@ -47,8 +47,8 @@ map("n", "<leader>qt", function()
 end, { desc = "List TODOs" })
 
 -- Tab Navigation
-map("n", "<leader>nt", "gt", { desc = "[N]ext [T]ab" })
-map("n", "<leader>ct", "<cmd>tabclose<cr>", { desc = "[C]lose [T]ab" })
+map("n", "<leader>tn", "gt", { desc = "[N]ext [T]ab" })
+map("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "[C]lose [T]ab" })
 
 -- Buffer Navigation
 -- resizing splits
@@ -62,6 +62,11 @@ map("n", "<c-j>", require("smart-splits").move_cursor_down)
 map("n", "<c-k>", require("smart-splits").move_cursor_up)
 map("n", "<c-l>", require("smart-splits").move_cursor_right)
 
+-- Python fixtures
+map("n", "gF", "<cmd>PytrizeJumpFixture<cr>", { desc = "Go to Fixture defenition" })
+
+-- DataBase connect UI
+map("n", "<leader>cd", "<cmd>DBUIToggle<cr>", { desc = "DataBase" })
 -- Page Navigation
 map("n", "<c-d>", "<c-d>zz")
 map("n", "<c-u>", "<c-u>zz")
@@ -80,30 +85,16 @@ end
 -- Terminal Management
 map("t", "<esc>", "<c-\\><c-n>", { noremap = true })
 
--- Neotest Config
-map("n", "<leader>tt", "<cmd>lua require('neotest').run.run()<cr>", { desc = "[T]est [T]his" })
-map("n", "<leader>tf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", { desc = "[T]est [F]ile" })
-map("n", "<leader>tp", "<cmd>lua require('neotest').run.run(vim.fn.getcwd())<cr>", { desc = "[T]est [P]roject" })
-map("n", "<leader>tw", "<cmd>lua require('neotest').watch.toggle(vim.fn.expand('%'))<cr>", { desc = "[T]est [W]atch" })
-map("n", "<leader>ts", "<cmd>lua require('neotest').summary.toggle()<cr>", { desc = "[T]est [S]ummary" })
-map(
-  "n",
-  "<silent>[n",
-  '<cmd>lua require("neotest").jump.prev({ status = "failed" })<CR>',
-  { desc = "Jump to prev failed test" }
-)
-map(
-  "n",
-  "<silent>]n",
-  '<cmd>lua require("neotest").jump.next({ status = "failed" })<CR>',
-  { desc = "Jump to next failed test" }
-)
-
--- DataBase Integration
-map("n", "<leader>cd", "<cmd>DBUIToggle<cr>", { desc = "DataBase" })
-
--- Pytest Jump to fixture
-map("n", "gF", "<cmd>PytrizeJumpFixture<cr>", { desc = "Go to Fixture defenition" })
-
--- Task Runner mappings
-map("n", "<leader>ct", "<cmd>Telescope tasks<cr>", { desc = "Tasks" })
+-- Folding
+map('n', 'zR', require('ufo').openAllFolds)
+map('n', 'zM', require('ufo').closeAllFolds)
+map('n', 'zr', require('ufo').openFoldsExceptKinds)
+map('n', 'zm', require('ufo').closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
+map('n', 'K', function()
+    local winid = require('ufo').peekFoldedLinesUnderCursor()
+    if not winid then
+        -- choose one of coc.nvim and nvim lsp
+        vim.fn.CocActionAsync('definitionHover') -- coc.nvim
+        vim.lsp.buf.hover()
+    end
+end)

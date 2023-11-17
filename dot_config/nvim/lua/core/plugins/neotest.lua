@@ -1,4 +1,4 @@
-local wk = require("which-key")
+local map = vim.keymap.set
 
 local M = {
   "nvim-neotest/neotest",
@@ -26,11 +26,30 @@ local M = {
         require("neotest-python"),
       },
     })
-    wk.register({
-      c = {
-        t = {},
-      },
-    }, { prefix = "<leader>", mode = "n" })
+
+    map("n", "<leader>ctt", "<cmd>lua require('neotest').run.run()<cr>", { desc = "Test run" })
+    map("n", "<leader>ctT", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", { desc = "Test current file" })
+    map("n", "<leader>ctp", "<cmd>lua require('neotest').run.run(vim.fn.getcwd())<cr>", { desc = "Test project" })
+    map(
+      "n",
+      "<leader>ctw",
+      "<cmd>clua require('neotest').watch.toggle(vim.fn.expand('%'))<cr>",
+      { desc = "Test watch" }
+    )
+    map("n", "<leader>ctS", "<cmd>lua require('neotest').summary.toggle()<cr>", { desc = "Test summary" })
+    map(
+      "n",
+      "<silent>c[n",
+      '<cmd>clua require("neotest").jump.prev({ status = "failed" })<CR>',
+      { desc = "Jump to prev failed test" }
+    )
+    map(
+      "n",
+      "<silent>c]n",
+      '<cmd>clua require("neotest").jump.next({ status = "failed" })<CR>',
+      { desc = "Jump to next failed test" }
+    )
+
   end,
 }
 return M

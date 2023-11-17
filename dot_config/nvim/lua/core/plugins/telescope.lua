@@ -14,8 +14,8 @@ local M = {
   },
   keys = {
     -- Local Search
-    { "<leader>?", "<cmd>lua require('telescope.builtin').find_files() <cr>", desc = "Commands" },
-    { "<leader><space>", "<cmd>lua require('telescope.builtin').buffers() <cr>", desc = "Commands" },
+    { "<leader><space>", "<cmd>lua require('telescope.builtin').buffers() <cr>", desc = "Buffers" },
+    { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Search in buffer" },
     -- Search stuff
     { "<leader>sc", "<cmd>Telescope commands<cr>", desc = "Commands" },
     { "<leader>st", "<cmd>Telescope live_grep<cr>", desc = "Strings" },
@@ -47,7 +47,7 @@ local M = {
     -- misc
     { "<leader>mt", "<cmd>Telescope<cr>", desc = "Telescope" },
     -- Other
-    { "<C-f>", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Search in buffer" },
+    { "<leader>cm", "<cmd>Telescope tasks<cr>", { desc = "Tasks" } },
   },
   config = function()
     local telescope = require("telescope")

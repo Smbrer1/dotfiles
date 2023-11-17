@@ -1,3 +1,4 @@
+local map = vim.keymap.set
 local M = {
   "AckslD/nvim-pytrize.lua",
   dependencies = { "nvim-lua/plenary.nvim" },

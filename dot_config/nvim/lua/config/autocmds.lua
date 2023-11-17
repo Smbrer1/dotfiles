@@ -150,3 +150,11 @@ end
 vim.api.nvim_create_user_command("AlphaSession", function(_)
   is_session()
 end, { desc = "Attach current session or list sessions depending on curr dir" })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {"neo-tree", "help" },
+  callback = function()
+    require("ufo").detach()
+    vim.opt_local.foldenable = false
+  end
+})

@@ -92,10 +92,13 @@ return {
     },
     lualine = {
       -- https://github.com/nvim-lualine/lualine.nvim#extensions
-      extensions = { "lazy", "neo-tree" },
+      extensions = { "lazy" },
     },
-    ltex = {
-      additional_lang = "de-DE", -- manually set a language in ltex-ls
+    mini_pick = {
+      mappings = {
+        move_down = "<C-j>",
+        move_up = "<C-k>",
+      },
     },
     noice = {
       enable = true, -- Noice heavily changes the Neovim UI ...
@@ -171,6 +174,10 @@ return {
       -- enable greping in hidden files
       grep_hidden = true,
     },
+    tex = {
+      vimtex_compiler_method = "tectonic", -- Tool to compile LaTex files
+      vimtex_view_method = "skim", -- Tool to view PDFs generated from LaTex
+    },
   },
 
   theme = {
@@ -180,18 +187,18 @@ return {
       -- catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
       variant = "catppuccin-mocha",
     },
-    -- kanagawa = {
-    --   -- kanagawa-dragon, kanagawa-lotus, kanagawa-wave
-    --   variant = "kanagawa-wave",
-    -- },
-    -- nightfox = {
-    --   -- nightfox, dayfox, dawnfox, duskfox, nordfox, terafox, carbonfox
-    --   variant = "carbonfox",
-    -- },
-    -- tokyonight = {
-    --   -- night storm day moon
-    --   variant = "night",
-    -- },
+    kanagawa = {
+      -- kanagawa-dragon, kanagawa-lotus, kanagawa-wave
+      variant = "kanagawa-wave",
+    },
+    nightfox = {
+      -- nightfox, dayfox, dawnfox, duskfox, nordfox, terafox, carbonfox
+      variant = "carbonfox",
+    },
+    tokyonight = {
+      -- night storm day moon
+      variant = "night",
+    },
   },
   -- treesitter parsers to be installed
   -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -214,7 +221,6 @@ return {
     "query",
     "python",
     "regex",
-    "terraform",
     "toml",
     "vim",
     "yaml",
@@ -229,7 +235,7 @@ return {
     "gopls",
     "ltex",
     "marksman",
-    "pyright", -- TODO get MY python lsp
+    "pylsp",
     "lua_ls",
     "tailwindcss",
     "texlab",
@@ -253,6 +259,6 @@ return {
     "ruff",
     -- DAP
     "debugpy",
-    "delve",
+    "codelldb",
   },
 }

@@ -1,6 +1,6 @@
 local M = {
   "ThePrimeagen/harpoon",
-  dependencied = "nvim-lua/plenary.nvim",
+  dependencies = "nvim-lua/plenary.nvim",
   keys = {
     "gh",
     "gH",
