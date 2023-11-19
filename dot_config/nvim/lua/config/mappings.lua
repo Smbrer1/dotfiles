@@ -85,16 +85,8 @@ end
 -- Terminal Management
 map("t", "<esc>", "<c-\\><c-n>", { noremap = true })
 
--- Folding
-map('n', 'zR', require('ufo').openAllFolds)
-map('n', 'zM', require('ufo').closeAllFolds)
-map('n', 'zr', require('ufo').openFoldsExceptKinds)
-map('n', 'zm', require('ufo').closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
-map('n', 'K', function()
-    local winid = require('ufo').peekFoldedLinesUnderCursor()
-    if not winid then
-        -- choose one of coc.nvim and nvim lsp
-        vim.fn.CocActionAsync('definitionHover') -- coc.nvim
-        vim.lsp.buf.hover()
-    end
-end)
+-- LSP hover
+map('n', 'K', vim.lsp.buf.hover, {desc="Hover doc"})
+
+
+map('n', '<leader>th', "<cmd> Hardtime toggle<cr>", {desc = "Remove bad habbits"})

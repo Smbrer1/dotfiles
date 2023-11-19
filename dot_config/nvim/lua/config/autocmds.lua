@@ -122,7 +122,7 @@ api.nvim_create_autocmd(
   }
 )
 
-function scandir(directory)
+local function scandir(directory)
   local i, t, popen = 0, {}, io.popen
   local pfile = popen('ls "' .. directory .. '"')
   for filename in pfile:lines() do
@@ -136,10 +136,14 @@ end
 local function is_session()
   local dir = string.match(vim.fn.getcwd(), ".*/(.*)")
   local session_dirs = scandir("$HOME/.local/share/nvim/sessions/")
+    print(dir)
+    print(session_dirs)
   for _, s_dir in ipairs(session_dirs) do
     s_dir = string.gsub(s_dir, "%%", "/")
     s_dir = string.match(s_dir, ".*/([a-zA-Z]*)")
+    -- print(s_dir)
     if string.find(dir, s_dir) then
+      print("found")
       vim.cmd("SessionRestore")
       return
     end
@@ -150,11 +154,3 @@ end
 vim.api.nvim_create_user_command("AlphaSession", function(_)
   is_session()
 end, { desc = "Attach current session or list sessions depending on curr dir" })
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = {"neo-tree", "help" },
-  callback = function()
-    require("ufo").detach()
-    vim.opt_local.foldenable = false
-  end
-})
