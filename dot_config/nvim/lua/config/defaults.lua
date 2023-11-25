@@ -92,7 +92,7 @@ return {
     },
     lualine = {
       -- https://github.com/nvim-lualine/lualine.nvim#extensions
-      extensions = { "lazy" },
+      extensions = { "lazy", "fugitive", "nvim-dap-ui", "quickfix", "neo-tree" },
     },
     mini_pick = {
       mappings = {

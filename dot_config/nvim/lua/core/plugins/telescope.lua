@@ -1,3 +1,4 @@
+local pickers = require("core.plugins.telescope_pickers.pickers")
 local conf = vim.g.config.plugins
 local M = {
   "nvim-telescope/telescope.nvim",
@@ -15,7 +16,7 @@ local M = {
   keys = {
     -- Local Search
     { "<leader><space>", "<cmd>lua require('telescope.builtin').buffers() <cr>", desc = "Buffers" },
-    { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Search in buffer" },
+    { "<leader>/", pickers.find_buffers, desc = "Search in buffer" },
     -- Search stuff
     { "<leader>sc", "<cmd>Telescope commands<cr>", desc = "Commands" },
     { "<leader>st", "<cmd>Telescope live_grep<cr>", desc = "Strings" },
@@ -142,27 +143,6 @@ local M = {
         selection_strategy = "reset",
         sorting_strategy = "descending",
         layout_strategy = "horizontal",
-        layout_config = {
-          width = 0.95,
-          height = 0.85,
-          -- preview_cutoff = 120,
-          prompt_position = "bottom",
-          horizontal = {
-            preview_width = function(_, cols, _)
-              if cols > 200 then
-                return math.floor(cols * 0.4)
-              else
-                return math.floor(cols * 0.6)
-              end
-            end,
-          },
-          vertical = { width = 0.9, height = 0.95, preview_height = 0.5 },
-          flex = { horizontal = { preview_width = 0.9 } },
-        },
-        winblend = 0,
-        border = {},
-        borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-        color_devicons = true,
         use_less = true,
         set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
       },

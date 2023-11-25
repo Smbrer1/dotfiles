@@ -21,7 +21,7 @@ return {
 
       -- Module mappings. Use `''` (empty string) to disable one.
       mappings = {
-        add = "sa", -- Add surrounding
+        add = "sa", -- A surrounding
         delete = "sd", -- Delete surrounding
         find = "sf", -- Find surrounding (to the right)
         find_left = "sF", -- Find surrounding (to the left)
@@ -31,12 +31,6 @@ return {
       },
     },
     config = function(_, opts)
-      vim.keymap.set(
-        "n",
-        "<leader><leader>s",
-        ":normal saiW`<Esc>",
-        { desc = "Surround inner word with backticks", noremap = true }
-      )
       local wk = require("which-key")
       wk.register({
         sa = "Add surrounding",

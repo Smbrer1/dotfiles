@@ -25,8 +25,8 @@ map("v", "P", '"_dP')
 -- buffers
 map("n", "<tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<S-tab>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-map("n", "<leader>bc", "<cmd>%bd|e#|bd#<cr>", { desc = "[C]lose all but the current [B]uffer" })
-map("n", "<leader>bd", "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>", { desc = "[C]lose [B]uffer" })
+map("n", "<leader>Bc", "<cmd>%bd|e#|bd#<cr>", { desc = "[C]lose all but the current [B]uffer" })
+map("n", "<leader>Bd", "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>", { desc = "[C]lose [B]uffer" })
 
 -- Cancel search highlighting with ESC
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Clear hlsearch and ESC" })

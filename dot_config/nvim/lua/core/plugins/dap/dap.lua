@@ -3,7 +3,7 @@ local M = {}
 local function configure()
   local dap_breakpoint = {
     error = {
-      text = "🟥",
+      text = "❤️",
       texthl = "LspDiagnosticsSignError",
       linehl = "",
       numhl = "",
@@ -59,10 +59,10 @@ local function create_mapping()
 end
 
 function M.setup()
-  configure()                       -- Configuration
-  configure_exts()                  -- Extensions
-  configure_debuggers()             -- Debugger
-  create_mapping()                  -- which-key mapping
+  configure() -- Configuration
+  configure_exts() -- Extensions
+  configure_debuggers() -- Debugger
+  create_mapping() -- which-key mapping
   require("core.plugins.hydra.dap") -- enable Hydra head
 end
 

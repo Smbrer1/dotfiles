@@ -4,6 +4,7 @@ local utils = require("core.plugins.lsp.utils")
 local lsp_settings = require("core.plugins.lsp.settings")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+local vlsp = vim.lsp
 -- enable autocompletion via nvim-cmp
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
@@ -30,6 +31,10 @@ for _, lsp in ipairs(conf.lsp_servers) do
     },
   })
 end
+
+vlsp.handlers["textDocument/publishDiagnostics"] = vlsp.with(vlsp.diagnostic.on_publish_diagnostics, {
+  underline = false,
+})
 
 vim.api.nvim_create_user_command(
   "LtexLang",

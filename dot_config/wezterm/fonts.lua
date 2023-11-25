@@ -13,6 +13,6 @@ M.font = w.font_with_fallback({
   { family = "Symbols Nerd Font Mono", scale = 0.75 }
 })
 M.use_cap_height_to_scale_fallback_fonts = true
-M.font_size = 14.0
+M.font_size = 12.0
 
 return M

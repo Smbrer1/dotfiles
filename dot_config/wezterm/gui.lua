@@ -10,8 +10,15 @@ local M = {}
 
 M.command_palette_bg_color = "#181825"
 M.command_palette_fg_color = "#cdd6f4"
-M.enable_wayland = true
-M.front_end = 'OpenGL'
+
+local wezterm = require('wezterm')
+local gpus = wezterm.gui.enumerate_gpus()
+
+-- M.webgpu_preferred_adapter = gpus[1]
+-- M.front_end = 'WebGpu'
+-- M.enable_wayland = true
+M.enable_wayland = false
+M.front_end = 'WebGpu'
 
 M.window_padding = {
   left = 7,

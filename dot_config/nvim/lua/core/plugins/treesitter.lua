@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 local M = {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
@@ -15,8 +16,8 @@ local M = {
       ensure_installed = conf.treesitter_ensure_installed,
       ignore_install = {}, -- List of parsers to ignore installing
       highlight = {
-        enable = true,     -- false will disable the whole extension
-        disable = {},      -- list of language that will be disabled
+        enable = true, -- false will disable the whole extension
+        disable = {}, -- list of language that will be disabled
         additional_vim_regex_highlighting = false,
       },
       incremental_selection = {
@@ -24,6 +25,7 @@ local M = {
         keymaps = {
           init_selection = "<CR>",
           scope_incremental = "<CR>",
+          scope_decremental = "<S-CR>",
           node_incremental = "<TAB>",
           node_decremental = "<S-TAB>",
         },
@@ -40,16 +42,44 @@ local M = {
           lookahead = true,
           keymaps = {
             -- You can use the capture groups defined in textobjects.scm
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
-            ["al"] = "@loop.outer",
-            ["il"] = "@loop.inner",
-            ["ib"] = "@block.inner",
-            ["ab"] = "@block.outer",
-            ["ir"] = "@parameter.inner",
-            ["ar"] = "@parameter.outer",
+            ["af"] = { query = "@function.outer", desc = "Function Outer" },
+            ["if"] = { query = "@function.inner", desc = "Function Inner" },
+            ["ac"] = { query = "@class.outer", desc = "Class Outer" },
+            ["ic"] = { query = "@class.inner", desc = "Class Inner" },
+            ["al"] = { query = "@loop.outer", desc = "Loop Outer" },
+            ["il"] = { query = "@loop.inner", desc = "Loop Inner" },
+            ["ib"] = { query = "@block.inner", desc = "Block Inner" },
+            ["ab"] = { query = "@block.outer", desc = "Block Outer" },
+            ["ir"] = { query = "@parameter.inner", desc = "Parameter Inner" },
+            ["ar"] = { query = "@parameter.outer", desc = "Parameter Outer" },
+            ["ia"] = { query = "@assignment.lhs", desc = "Assignment Lhs" },
+            ["aa"] = { query = "@assignment.rhs", desc = "Assignment Rhs" },
+          },
+        },
+        move = {
+          enable = true,
+          set_jumps = true,
+
+          goto_next_start = {
+            ["]p"] = { query = "@parameter.inner", desc = "Goto Next Start Parameter Inner" },
+            ["]m"] = { query = "@function.outer", desc = "Goto Next Start Function outer" },
+            ["]]"] = { query = "@class.outer", desc = "Goto Next Start Class Outer" },
+          },
+
+          goto_next_end = {
+            ["]M"] = { query = "@function.outer", desc = "Goto Next End Function Outer" },
+            ["]["] = { query = "@class.outer", desc = "Goto Next End Class Outer" },
+          },
+
+          goto_previous_start = {
+            ["[p"] = { query = "@parameter.inner", desc = "Goto Previous Start Parameter Inner" },
+            ["[m"] = { query = "@function.outer", desc = "Goto Previous Start Function Outer" },
+            ["[["] = { query = "@class.outer", desc = "Goto Previous Start Class Outer" },
+          },
+
+          goto_previous_end = {
+            ["[M"] = { query = "@function.outer", desc = "Goto Previous End Function Outer" },
+            ["[]"] = { query = "@class.outer", desc = "Goto Previous End Class Outer" },
           },
         },
       },

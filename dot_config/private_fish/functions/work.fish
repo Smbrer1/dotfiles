@@ -1,1 +1,1 @@
-alias work='cd "$(fd . "$HOME/Workspace" --type d --exclude .git | fzf --cycle --preview "exa --tree --color=always {}")"'
+alias work='z "$(fd . "$HOME/Workspace" --type d --exclude .git -d 3 | fzf --cycle --preview "exa --tree --color=always {}")"'

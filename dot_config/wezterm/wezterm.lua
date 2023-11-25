@@ -21,6 +21,7 @@ local config = merge(mappings, mtt, fonts, gui, shell)
 require("setups.right-status").setup()
 require("setups.left-status").setup()
 require("setups.notify").setup()
-require("setups.tab-title").setup()
+require('tabs').setup(config)
+-- require("setups.tab-title").setup()
 
 return config
