@@ -67,6 +67,7 @@ for_window [class="Steam" title="^Steam$"] floating disable
 # start XDG autostart .desktop files using dex. see also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
+exec xrandr --output DVI-I-0 --off --output DVI-I-1 --off --output HDMI-0 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-0 --mode 2560x1440 --pos 1920x0 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-5 --off
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -226,6 +227,6 @@ bindsym $mod+r mode "resize"
 # -- Border --
 
 default_border pixel 0
-gaps inner 16
-gaps outer 16
-gaps top 62
+gaps inner 3
+gaps outer 3
+gaps top 52
