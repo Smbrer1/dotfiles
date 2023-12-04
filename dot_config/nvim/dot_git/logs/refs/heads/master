@@ -1,0 +1,7 @@
+0000000000000000000000000000000000000000 d5de15779d7c4f144d1819d05b65bbcec9cd1855 Artem Sokolov <sombrer01@Sombrer0-MTT-PC.(none)> 1696031765 +0300	clone: from github.com:Smbrer1/kickstart.nvim.git
+d5de15779d7c4f144d1819d05b65bbcec9cd1855 f191516a92ae570b1e7e444bbd6fc8dc65f307f7 Artem Sokolov <smbrer1@gmail.com> 1696192652 +0300	commit: feat: added startscreen and some mappings
+f191516a92ae570b1e7e444bbd6fc8dc65f307f7 789d30b8a3a6a3f6d4897db7bc4aa315e1478459 Artem Sokolov <smbrer1@gmail.com> 1696512864 +0300	pull --no-edit: Fast-forward
+789d30b8a3a6a3f6d4897db7bc4aa315e1478459 f146572bf7261f615c0b01c8e78944a8b057401c Artem Sokolov <smbrer1@gmail.com> 1696512624 +0300	commit: feat: add pylsp
+f146572bf7261f615c0b01c8e78944a8b057401c 0cb34441e71a5cece451d2da81f6c361b3866689 Artem Sokolov <smbrer1@gmail.com> 1696529602 +0300	commit: :feat added floating lazygit and mason autoupdate
+0cb34441e71a5cece451d2da81f6c361b3866689 5a50e3696ececea3bbb33aed766081314a43e02a Artem Sokolov <smbrer1@gmail.com> 1696534208 +0300	commit: feat: added neoclip
+5a50e3696ececea3bbb33aed766081314a43e02a bce39954288599a1c9ebeb4dc161e9e8800c686a Artem Sokolov <smbrer1@gmail.com> 1696882623 +0300	pull --no-edit: Fast-forward

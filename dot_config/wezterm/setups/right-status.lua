@@ -40,7 +40,7 @@ M.set_date = function()
 end
 
 M.set_zina = function()
-  M.push("󰠧", "[ZINA]", M.colors.battery_fg, M.colors.battery_bg, false)
+  M.push("󰠧", "[ZINA]", M.colors.battery_fg, M.colors.battery_bg, true)
 end
 
 M.setup = function()
@@ -48,6 +48,7 @@ M.setup = function()
     M.cells = {}
     M.set_date()
     M.set_zina()
+    M.push("󱎃", window:active_workspace(), M.colors.battery_fg, M.colors.battery_bg, false)
     window:set_right_status(w.format(M.cells))
   end)
 end

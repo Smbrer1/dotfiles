@@ -2,15 +2,10 @@
 -- but heavily stripped down
 local utils = require("utils.functions")
 
--- TODO:
-local function validate_config(config) return config end
-
 local function init()
-  local user_config = utils.load_user_config()
-  validate_config(user_config)
 
   -- Merge defaults and user config
-  vim.g.config = utils.merge_tables(require("config.defaults"), user_config)
+  vim.g.config = require("config.defaults")
 
   -- configure vim.opt
   for k, v in pairs(vim.g.config.options) do

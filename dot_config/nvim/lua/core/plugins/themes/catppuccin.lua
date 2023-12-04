@@ -38,7 +38,7 @@ catppuccin.setup({
         information = { "italic" },
       },
       underlines = {
-        errors = { "underline" },
+        -- errors = { "underline" },
         hints = { "underline" },
         warnings = { "underline" },
         information = { "underline" },

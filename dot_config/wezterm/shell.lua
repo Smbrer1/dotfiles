@@ -13,7 +13,7 @@ M.unix_domains = {
     name = 'unix'
   }
 }
--- M.default_gui_startup_args= {'connect', 'unix'}
+M.default_gui_startup_args= {'connect', 'unix'}
 M.default_prog = { "/usr/bin/fish" }
 
 return M

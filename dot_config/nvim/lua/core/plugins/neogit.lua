@@ -3,6 +3,9 @@ local M = {
   cmd = "Neogit",
   dependencies = {
     "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope.nvim", -- optional
+    "sindrets/diffview.nvim",        -- optional
+    "ibhagwan/fzf-lua",              -- optional
   },
   opts = {
     disable_signs = false,
