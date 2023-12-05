@@ -1,6 +1,0 @@
-#!/bin/sh
-
-
-grep -xq '0x1003' /sys/class/net/enp5s0/flags && wifiicon="󱂇 Wired" || wifiicon= "󰞃 Disconnected"
-
-echo "$wifiicon"
