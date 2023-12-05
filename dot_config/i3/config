@@ -1,0 +1,291 @@
+# i3 config file (v4)
+font pango:Hack 14
+
+# -- Variables --
+
+# set mod to win key
+set $mod Mod4
+
+# set path to wallpaper
+set $wallpaper /home/asombrer01/wallpapers
+
+# use catppuccin palette
+# set $rosewater #f5e0dc
+# set $flamingo  #f2cdcd
+# set $pink      #f5c2e7
+# set $mauve     #cba6f7
+# set $red       #f38ba8
+# set $maroon    #eba0ac
+# set $peach     #fab387
+# set $green     #a6e3a1
+# set $teal      #94e2d5
+# set $sky       #89dceb
+# set $sapphire  #74c7ec
+# set $blue      #89b4fa
+# set $lavender  #b4befe
+# set $text      #cdd6f4
+# set $subtext1  #bac2de
+# set $subtext0  #a6adc8
+# set $overlay2  #9399b2
+# set $overlay1  #7f849c
+# set $overlay0  #6c7086
+# set $surface2  #585b70
+# set $surface1  #45475a
+# set $surface0  #313244
+# set $base      #1e1e2e
+# set $mantle    #181825
+# set $crust     #11111b
+#
+# # target                 title     bg    text   indicator  border
+# client.focused           $mauve $base $text  $mauve  $surface0
+# client.focused_inactive  $mauve $base $text  $surface1  $surface1
+# client.unfocused         $surface2 $base $text  $surface2  $surface2
+# client.urgent            $peach    $base $peach $overlay0  $peach
+# client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+# client.background        $base
+
+# use pactl to adjust volume in pulseaudio
+set $refresh_i3status killall -SIGUSR1 i3status
+
+# define names for default workspaces for which we configure key bindings later on.
+# we use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+
+for_window [class="Rofi" instance="rofi"] floating enable
+for_window [class="Steam"] floating enable
+for_window [class="Steam" title="^Steam$"] floating disable
+# -- Exec --
+
+# start XDG autostart .desktop files using dex. see also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment i3
+exec xrandr --output DVI-I-0 --off --output DVI-I-1 --off --output HDMI-0 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-0 --mode 2560x1440 --pos 1920x0 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off --output DP-5 --off
+
+# The combination of xss-lock, nm-applet and pactl is a popular choice, so
+# they are included here as an example. Modify as you see fit.
+
+# exec --no-startup-id nm-applet
+
+exec --no-startup-id greenclip daemon
+exec --no-startup-id xsettingsd
+exec --no-startup-id udiskie --no-notify
+exec --no-startup-id brightnessctl set 100%+
+exec --no-startup-id feh --bg-scale --randomize $wallpaper
+exec --no-startup-id xss-lock --transfer-sleep-lock -- sh /home/tone/.local/share/bin/lock.sh
+exec --no-startup-id systemd-inhibit --what=handle-power-key sleep infinity
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id picom
+exec_always --no-startup-id ~/.fehbg
+exec_always "setxkbmap -model pc104 -layout us,ru -variant ,, -option grp:alt_shift_toggle"
+
+# -- Bindings --
+
+# change vol
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# change brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 10%+
+
+floating_modifier $mod
+tiling_drag modifier titlebar
+
+# start a terminal
+bindsym $mod+Return exec wezterm
+
+# kill focused window
+bindsym $mod+q kill
+
+# rofi bindings
+bindsym Control+space exec rofi -show drun -normal-window
+bindsym $mod+Control+r exec rofi -show run -normal-window
+bindsym Mod1+Tab exec rofi -show window -normal-window
+bindsym $mod+Shift+p exec ~/.config/rofi/bin/powermenu
+
+bindsym Shift+$mod+s exec flameshot gui
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split in horizontal orientation
+bindsym $mod+minus split h
+
+# split in vertical orientation
+bindsym $mod+slash split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+bindsym $mod+d focus child
+
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+
+assign [class="org.wezfurlong.wezterm"] $ws1
+assign [class="firefox"] $ws2
+assign [class="chromium"] $ws2
+assign [class="postman"] $ws2
+assign [class="discord"] $ws3
+assign [class="TelegramDesktop"] $ws3
+assign [class="Cisco AnyConnect Secure Mobility Client"] $ws5
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+# bar {
+    # position top
+    # status_command /usr/bin/bumblebee-status \
+        # -m battery nic datetime \
+        # -t powerline
+# }
+
+# -- Border --
+# set $rosewater #f5e0dc
+# set $flamingo  #f2cdcd
+# set $pink      #f5c2e7
+# set $mauve     #cba6f7
+# set $red       #f38ba8
+# set $maroon    #eba0ac
+# set $peach     #fab387
+# set $green     #a6e3a1
+# set $teal      #94e2d5
+# set $sky       #89dceb
+# set $sapphire  #74c7ec
+# set $blue      #89b4fa
+# set $lavender  #b4befe
+# set $text      #cdd6f4
+# set $subtext1  #bac2de
+# set $subtext0  #a6adc8
+# set $overlay2  #9399b2
+# set $overlay1  #7f849c
+# set $overlay0  #6c7086
+# set $surface2  #585b70
+# set $surface1  #45475a
+# set $surface0  #313244
+# set $base      #1e1e2e
+# set $mantle    #181825
+# set $crust     #11111b
+set $bg_dark #1f2335
+set $bg #24283b
+set $bg_highlight #292e42
+set $terminal_black #414868
+set $fg #c0caf5
+set $fg_dark #a9b1d6
+set $fg_gutter #3b4261
+set $dark3 #545c7e
+set $comment #565f89
+set $dark5 #737aa2
+set $blue0 #3d59a1
+set $blue #7aa2f7
+set $cyan #7dcfff
+set $blue1 #2ac3de
+set $blue2 #0db9d7
+set $blue5 #89ddff
+set $blue6 #b4f9f8
+set $blue7 #394b70
+set $magenta #bb9af7
+set $magenta2 #ff007c
+set $purple #9d7cd8
+set $orange #ff9e64
+set $yellow #e0af68
+set $green #9ece6a
+set $green1 #73daca
+set $green2 #41a6b5
+set $teal #1abc9c
+set $red #f7768e
+set $red1 #db4b4b
+
+gaps inner 0
+# target                title         bg       text     indicator border
+client.focused          $blue         $bg_dark $fg_dark $blue0    $blue
+client.focused_inactive $blue         $bg_dark $fg_dark $blue0    $blue
+client.unfocused        $bg_dark      $bg_dark $fg_dark $bg_dark    $bg_dark
+client.urgent           $purple       $bg_dark $fg_dark $purple    $purple
+client.background       $bg_dark
+
+for_window [class=".*"] border pixel 1
