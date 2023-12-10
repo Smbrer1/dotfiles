@@ -4,12 +4,13 @@ local M = {}
 M.separator_char = "| "
 
 M.colors = {
-  date_fg = "#cdd6f4",
-  date_bg = "#1e1e2e",
-  battery_fg = "#cdd6f4",
-  battery_bg = "#1e1e2e",
-  separator_fg = "#cdd6f4",
-  separator_bg = "#1e1e2e",
+  date_fg = "#c0caf5",
+  date_bg = "#1a1b26",
+  battery_fg = "#c0caf5",
+  battery_bg = "#1a1b26",
+  separator_fg = "#c0caf5",
+  separator_bg = "#1a1b26",
+  padding_bg = "#1a1b26",
 }
 
 M.cells = {} -- wezterm FormatItems (ref: https://wezfurlong.org/wezterm/config/lua/wezterm/format.html)
@@ -40,15 +41,14 @@ M.set_date = function()
 end
 
 M.set_zina = function()
-  M.push("󰠧", "[ZINA]", M.colors.battery_fg, M.colors.battery_bg, true)
+  M.push("󰠧", "[ZINA]", M.colors.battery_fg, M.colors.battery_bg, false)
 end
 
 M.setup = function()
   w.on("update-right-status", function(window, _)
     M.cells = {}
-    M.set_date()
+    -- M.set_date()
     M.set_zina()
-    M.push("󱎃", window:active_workspace(), M.colors.battery_fg, M.colors.battery_bg, false)
     window:set_right_status(w.format(M.cells))
   end)
 end

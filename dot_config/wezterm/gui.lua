@@ -8,8 +8,8 @@
 --]]
 local M = {}
 
-M.command_palette_bg_color = "#181825"
-M.command_palette_fg_color = "#cdd6f4"
+M.command_palette_bg_color = "#1A1B26"
+M.command_palette_fg_color = "#c0caf5"
 
 local wezterm = require('wezterm')
 local gpus = wezterm.gui.enumerate_gpus()
@@ -27,15 +27,13 @@ M.window_padding = {
   bottom = 0,
 }
 
-M.color_scheme = "Catppuccin Mocha"
-M.tab_bar_at_bottom = true
-M.use_fancy_tab_bar = false
+M.color_scheme = "Tokyo Night"
 M.colors = {
   tab_bar = {
-    background = "#1e1e2e",
+    background = "#1A1B26",
     new_tab = {
-      bg_color = "#1e1e2e",
-      fg_color = "#1e1e2e",
+      bg_color = "#1A1B26",
+      fg_color = "#1A1B26",
     }
 
   },

@@ -1,3 +1,4 @@
+---@diagnostic disable: inject-field
 local wezterm = require("wezterm")
 
 local M = {}
@@ -55,10 +56,10 @@ function M.title(tab, max_width)
     end
   end
   if is_zoomed then -- or (#tab.panes > 1 and not tab.is_active) then
-    title = " " .. title
+    title = "󱐋 " .. title
   end
 
-  title = wezterm.truncate_right(title, max_width - 3)
+  title = wezterm.truncate_right(title, max_width - 2)
   return " " .. title .. " "
 end
 
@@ -67,7 +68,7 @@ function M.setup(config)
   config.use_fancy_tab_bar = false
   config.tab_bar_at_bottom = true
   config.hide_tab_bar_if_only_one_tab = false
-  config.tab_max_width = 32
+  config.tab_max_width = 20
   config.unzoom_on_switch_pane = true
 
   wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
