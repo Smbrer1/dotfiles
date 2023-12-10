@@ -40,8 +40,6 @@ local M = {
     dashboard.section.buttons.val = {
       dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
       dashboard.button("f", "󰈞  > Find file", ":Telescope find_files<CR>"),
-      dashboard.button("p", "  > Projects", ":lua require'telescope'.extensions.projects.projects()<CR>"),
-      dashboard.button("s", "󰈗  > Sessions", ":AlphaSession<cr>"),
       dashboard.button("c", "  > Config", ":e $MYVIMRC | :cd %:p:h | wincmd k | pwd<CR> "),
       dashboard.button("q", "󰗼  > Quit NVIM", ":qa<CR>"),
     }

@@ -1,11 +1,10 @@
 -- inspired by https://github.com/LunarVim/LunarVim/tree/master
 -- but heavily stripped down
-local utils = require("utils.functions")
+local utils = require 'utils.functions'
 
 local function init()
-
   -- Merge defaults and user config
-  vim.g.config = require("config.defaults")
+  vim.g.config = require 'config.defaults'
 
   -- configure vim.opt
   for k, v in pairs(vim.g.config.options) do
@@ -13,13 +12,13 @@ local function init()
   end
 
   -- autocmds
-  require("config.autocmds")
+  require 'config.autocmds'
   -- globals
-  require("utils.globals")
+  require 'utils.globals'
   -- lazy.nvim
-  require("config.lazy")
+  require 'config.lazy'
   -- global mappings (must be loaded after lazy)
-  require("config.mappings")
+  require 'config.mappings'
 end
 
 init()

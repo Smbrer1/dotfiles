@@ -1,11 +1,10 @@
 local M = {
-  "NeogitOrg/neogit",
-  cmd = "Neogit",
+  'NeogitOrg/neogit',
+  cmd = 'Neogit',
   dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope.nvim", -- optional
-    "sindrets/diffview.nvim",        -- optional
-    "ibhagwan/fzf-lua",              -- optional
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope.nvim', -- optional
+    'ibhagwan/fzf-lua', -- optional
   },
   opts = {
     disable_signs = false,
@@ -14,9 +13,9 @@ local M = {
     -- customize displayed signs
     signs = {
       -- { CLOSED, OPENED }
-      section = { ">", "v" },
-      item = { ">", "v" },
-      hunk = { "", "" },
+      section = { '>', 'v' },
+      item = { '>', 'v' },
+      hunk = { '', '' },
     },
     integrations = { diffview = true },
     -- override/add mappings

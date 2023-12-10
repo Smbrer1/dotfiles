@@ -32,6 +32,7 @@ local M = {
       -- Hydra not working with "name" key
       ["<leader>w"] = { "Windows" },
       ["<leader>z"] = { "Spelling" },
+      ["<leader>o"] = { "Options" },
     },
   },
   config = function(_, opts)

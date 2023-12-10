@@ -23,6 +23,7 @@ nls.setup({
       "<cmd>lua require('core.plugins.lsp.utils').toggle_autoformat()<cr>",
       { desc = "Toggle format on save" }
     )
+    vim.keymap.set( "n", "<leader>tf", function() vim.lsp.buf.format({bufnr=bufnr}) end, {desc = "Format this file"})
     if client.supports_method("textDocument/formatting") then
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
       vim.api.nvim_create_autocmd("BufWritePre", {
