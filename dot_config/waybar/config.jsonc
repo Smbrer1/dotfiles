@@ -1,26 +1,53 @@
 [
   {
     "layer": "top", // Waybar on highest layer so tooltips go over windows
+    "position": "bottom",
     "name": "2K",
     "output": "DP-1", // Set output to primary monitor
     "height": 36, // Set height to avoid jumping due to active workspace indicator
-
-    "modules-left": ["hyprland/workspaces", "clock", "custom/pacman" ], // Sets modules for the left of the bar
-    "modules-center": ["hyprland/window"], // Set modules for the center of the bar
-    "modules-right": ["temperature", "cpu", "memory", "pulseaudio"], // Set modules for the right of the bar
-
-    "include": ["$XDG_CONFIG_HOME/waybar/modules.jsonc"] // Include the module config
+    "modules-left": [
+      "hyprland/workspaces",
+      "clock",
+      "custom/pacman",
+      "hyprland/language"
+    ], // Sets modules for the left of the bar
+    "modules-center": [
+      "hyprland/window"
+    ], // Set modules for the center of the bar
+    "modules-right": [
+      "tray",
+      "temperature",
+      "cpu",
+      "memory",
+      "pulseaudio"
+    ], // Set modules for the right of the bar
+    "include": [
+      "$XDG_CONFIG_HOME/waybar/modules.jsonc"
+    ] // Include the module config
   },
-
   {
     "layer": "top", // Waybar on highest layer so tooltips go over windows
+    "position": "bottom",
     "output": "HDMI-A-1", // Set output to secondary monitor
     "height": 36, // Set height to avoid jumping due to active workspace indicator
-
-    "modules-left": ["hyprland/workspaces", "clock", "custom/kernel" ], // Sets modules for the left of the bar
-    "modules-center": ["hyprland/window"], // Sets modules for the center of the bar
-    "modules-right": ["tray", "temperature", "cpu", "memory", "pulseaudio"], // Sets modules for the right of the bar
-
-    "include": ["$XDG_CONFIG_HOME/waybar/modules.jsonc"] // Include the module config
+    "modules-left": [
+      "hyprland/workspaces",
+      "clock",
+      "custom/kernel",
+      "hyprland/language"
+    ], // Sets modules for the left of the bar
+    "modules-center": [
+      "hyprland/window"
+    ], // Sets modules for the center of the bar
+    "modules-right": [
+      "tray",
+      "temperature",
+      "cpu",
+      "memory",
+      "pulseaudio"
+    ], // Sets modules for the right of the bar
+    "include": [
+      "$XDG_CONFIG_HOME/waybar/modules.jsonc"
+    ] // Include the module config
   }
 ]

@@ -1,4 +1,3 @@
-local pickers = require 'core.plugins.telescope_pickers.pickers'
 local conf = vim.g.config.plugins
 local M = {
   'nvim-telescope/telescope.nvim',
@@ -15,8 +14,18 @@ local M = {
   },
   keys = {
     -- Local Search
-    { '<leader><space>', "<cmd>lua require('telescope.builtin').buffers() <cr>", desc = 'Buffers' },
-    { '<leader>/', pickers.find_buffers, desc = 'Search in buffer' },
+    { '<leader><space>', '<cmd>Telescope buffers layout_strategy=bottom_pane height=0.3<cr>', desc = 'Buffers' },
+    {
+      '<leader>/',
+      function()
+        require('telescope.builtin').current_buffer_fuzzy_find {
+          layout_strategy = 'bottom_pane',
+          layout_config = { height = 0.3 },
+          border = false,
+        }
+      end,
+      desc = 'Search in buffer',
+    },
     -- Search stuff
     { '<leader>sc', '<cmd>Telescope commands<cr>', desc = 'Commands' },
     { '<leader>sg', '<cmd>Telescope live_grep<cr>', desc = 'Strings' },
@@ -91,6 +100,7 @@ local M = {
       pickers = {
         find_files = {
           hidden = false,
+          title = 'Find Files',
         },
         oldfiles = {
           cwd_only = true,
@@ -98,6 +108,12 @@ local M = {
         buffers = {
           ignore_current_buffer = true,
           sort_lastused = true,
+        },
+        current_buffer_fuzzy_find = {
+          previewer = false,
+          results_height = 15,
+          winblend = 10,
+          layout_strategy = 'horizontal',
         },
         live_grep = {
           only_sort_text = true, -- grep for content and not file name/path
@@ -134,6 +150,7 @@ local M = {
             ['<c-x>'] = actions.delete_buffer,
           },
         },
+        -- border = false,
         prompt_prefix = table.concat { icons.arrows.ChevronRight, ' ' },
         selection_caret = icons.arrows.CurvedArrowRight,
         entry_prefix = '  ',
@@ -145,6 +162,7 @@ local M = {
         layout_strategy = 'horizontal',
         use_less = true,
         set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+        -- border = {},
       },
     }
 

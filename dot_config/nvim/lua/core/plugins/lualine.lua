@@ -18,7 +18,9 @@ local M = {
           end,
         },
       },
-      lualine_x = {},
+      lualine_x = {
+        { 'filename', path = 1 },
+      },
       lualine_y = { 'progress' },
       lualine_z = { 'location' },
     },
@@ -29,12 +31,6 @@ local M = {
       lualine_x = {},
       lualine_y = {},
       lualine_z = {},
-    },
-    winbar = {
-      lualine_a = {
-        { 'filename', path = 1 },
-      },
-      lualine_b = { 'encoding' },
     },
   },
   config = function(_, opts)

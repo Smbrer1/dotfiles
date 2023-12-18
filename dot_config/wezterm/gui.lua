@@ -8,9 +8,6 @@
 --]]
 local M = {}
 
-M.command_palette_bg_color = "#1A1B26"
-M.command_palette_fg_color = "#c0caf5"
-
 local wezterm = require('wezterm')
 local gpus = wezterm.gui.enumerate_gpus()
 
@@ -20,14 +17,10 @@ local gpus = wezterm.gui.enumerate_gpus()
 M.enable_wayland = false
 M.front_end = 'WebGpu'
 
-M.window_padding = {
-  left = 7,
-  right = 7,
-  top = 7,
-  bottom = 0,
-}
+M.command_palette_bg_color = "#1A1B26"
+M.command_palette_fg_color = "#c0caf5"
 
-M.color_scheme = "Tokyo Night"
+-- M.color_scheme = "Tokyo Night"
 M.colors = {
   tab_bar = {
     background = "#1A1B26",
@@ -37,6 +30,13 @@ M.colors = {
     }
 
   },
+}
+
+M.window_padding = {
+  left = 3,
+  right = 3,
+  top = 3,
+  bottom = 0,
 }
 
 M.inactive_pane_hsb = {

@@ -32,6 +32,7 @@ local M = {
         require("core.plugins.lsp.keys").on_attach(client, bufnr)
         local wk = require("which-key")
         local default_options = { silent = true }
+        vim.keymap.set( "n", "<leader>tf", function() vim.lsp.buf.format({bufnr=bufnr}) end, {desc = "Format this file"})
         wk.register({
           c = {
             name = "Coding",

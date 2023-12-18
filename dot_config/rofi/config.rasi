@@ -1,20 +1,31 @@
 configuration{
-    modi: "run,drun,window";
-    show-icons: false;
+    modi: ["drun", "window", "run"];
+    icon-theme: "Papirus-Dark";
+    show-icons: true;
     terminal: "alacritty";
+    drun-display-format: "{icon} {name}";
     location: 0;
-    disable-history: true;
-    hide-scrollbar: true;
-    display-drun: "   Apps ";
-    display-run: "   Run ";
-    display-window: "   Window";
-    display-Network: " 󰤨  Network";
-    display-clipboard: "  Clipboard";
-    sidebar-mode: true;
-}
+    disable-history: false;
+    sidebar-mode: false;
+    display-drun: " ";
+    display-run: " ";
+    display-window: " ";
+    
+    //adding vim keybindings
+    kb-row-up: "Up,Control+k";
+    kb-row-left: "Left,Control+h";
+    kb-row-right: "Right,Control+l";
+    kb-row-down: "Down,Control+j";
 
-@theme "catppuccin-mocha"
+    kb-accept-entry: "Control+z,Control+y,Return,KP_Enter";
 
-* {
-    font: "JetBrainsMono 12";
+    //fixing up
+    kb-remove-to-eol: "";
+    kb-move-char-back: "Control+b";
+    kb-remove-char-back: "BackSpace";
+    kb-move-char-forward: "Control+f";
+    kb-mode-complete: "Control+o";
 }
+//@theme "/usr/share/rofi/themes/tokyonight.rasi"
+
+@theme "/usr/share/rofi/themes/tokyonight.rasi"

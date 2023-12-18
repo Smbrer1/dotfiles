@@ -23,6 +23,7 @@ return {
       space = '·',
       nbsp = '␣',
     },
+    wrap = false,
     mouse = 'a', -- enable mouse see :h mouse
     number = true, -- set numbered lines
     relativenumber = true, -- set relative numbered lines
@@ -37,7 +38,7 @@ return {
     sidescrolloff = 5, -- The minimal number of columns to scroll horizontally
     signcolumn = 'yes', -- Always show the signcolumn, otherwise it would shift the text each time
     smartcase = true, -- Don't ignore case with capitals
-    smartindent = true, -- Insert indents automatically
+    smartindent = false, -- Insert indents automatically
     splitbelow = true, -- force all horizontal splits to go below current window
     splitright = true, -- force all vertical splits to go to the right of current window
     swapfile = true, -- enable/disable swap file creation
@@ -115,7 +116,7 @@ return {
       -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
       -- requires cmake and gcc toolchain
       fzf_native = {
-        enable = false,
+        enable = true,
       },
       -- which patterns to ignore in file switcher
       file_ignore_patterns = {
@@ -174,10 +175,6 @@ return {
       -- enable greping in hidden files
       grep_hidden = true,
     },
-    tex = {
-      vimtex_compiler_method = 'tectonic', -- Tool to compile LaTex files
-      vimtex_view_method = 'skim', -- Tool to view PDFs generated from LaTex
-    },
   },
 
   theme = {
@@ -188,8 +185,8 @@ return {
       variant = 'catppuccin-mocha',
     },
     kanagawa = {
-      -- kanagawa-dragon, kanagawa-lotus, kanagawa-wave
-      variant = 'kanagawa-wave',
+      -- dragon, lotus, wave, c_dragon (custom dragons)
+      variant = 'dragon',
     },
     nightfox = {
       -- nightfox, dayfox, dawnfox, duskfox, nordfox, terafox, carbonfox
@@ -233,14 +230,11 @@ return {
     'jsonls',
     -- TODO managed by go.nvim
     'gopls',
-    'ltex',
     'marksman',
     'pylsp',
     'lua_ls',
     'tailwindcss',
-    'texlab',
     'tsserver',
-    'typst_lsp',
     'yamlls',
   },
 
@@ -254,10 +248,10 @@ return {
     -- Linter
     'eslint_d',
     'shellcheck',
-    'tflint',
     'yamllint',
     'ruff',
     -- DAP
+    'delve',
     'debugpy',
     'codelldb',
   },

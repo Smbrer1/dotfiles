@@ -68,8 +68,8 @@ map("n", "gF", "<cmd>PytrizeJumpFixture<cr>", { desc = "Go to Fixture defenition
 -- DataBase connect UI
 map("n", "<leader>cd", "<cmd>DBUIToggle<cr>", { desc = "DataBase" })
 -- Page Navigation
-map("n", "<c-d>", "<c-d>zz")
-map("n", "<c-u>", "<c-u>zz")
+-- map("n", "<c-d>", "<c-d>zz")
+-- map("n", "<c-u>", "<c-u>zz")
 
 -- Inlay Hint
 if vim.lsp.inlay_hint then
