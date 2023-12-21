@@ -3,8 +3,7 @@ local M = {
   config = function()
     require('colorful-winsep').setup {
       highlight = {
-        bg = '#16161E',
-        fg = '#C34043',
+        fg = "#89ddff",
       },
     }
   end,

@@ -1,15 +1,6 @@
 local utils = require("utils.functions")
 local map = vim.keymap.set
 
--- local mapping = {
---   { "n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true } },
--- }
-
-map("i", "jj", "<Esc>", { noremap = true })
-
--- Floating Comman Line
-map("n", "<cmd>", "<cmd>FineCmdline<CR>", { noremap = true })
-
 -- Remap for dealing with visual line wraps
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
@@ -25,8 +16,8 @@ map("v", "P", '"_dP')
 -- buffers
 map("n", "<tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<S-tab>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-map("n", "<leader>Bc", "<cmd>%bd|e#|bd#<cr>", { desc = "[C]lose all but the current [B]uffer" })
-map("n", "<leader>Bd", "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>", { desc = "[D]elete current [B]uffer" })
+map("n", "<leader>Bd", "<cmd>%bd|e#|bd#<cr>", { desc = "[C]lose all but the current [B]uffer" })
+map("n", "<leader>Bc", "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>", { desc = "[D]elete current [B]uffer" })
 
 -- Cancel search highlighting with ESC
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Clear hlsearch and ESC" })
@@ -47,8 +38,8 @@ map("n", "<leader>qt", function()
 end, { desc = "List TODOs" })
 
 -- Tab Navigation
-map("n", "<leader>tn", "gt", { desc = "[N]ext [T]ab" })
-map("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "[C]lose [T]ab" })
+map("n", "<leader>Tn", "gt", { desc = "[N]ext [T]ab" })
+map("n", "<leader>Tc", "<cmd>tabclose<cr>", { desc = "[C]lose [T]ab" })
 
 -- Buffer Navigation
 -- resizing splits
@@ -67,9 +58,6 @@ map("n", "gF", "<cmd>PytrizeJumpFixture<cr>", { desc = "Go to Fixture defenition
 
 -- DataBase connect UI
 map("n", "<leader>cd", "<cmd>DBUIToggle<cr>", { desc = "DataBase" })
--- Page Navigation
--- map("n", "<c-d>", "<c-d>zz")
--- map("n", "<c-u>", "<c-u>zz")
 
 -- Inlay Hint
 if vim.lsp.inlay_hint then
@@ -87,6 +75,5 @@ map("t", "<esc>", "<c-\\><c-n>", { noremap = true })
 
 -- LSP hover
 map('n', 'K', vim.lsp.buf.hover, {desc="Hover doc"})
-
 
 map('n', '<leader>th', "<cmd> Hardtime toggle<cr>", {desc = "Remove bad habbits"})

@@ -3,7 +3,6 @@ local fn = vim.fn
 
 local M = {}
 
-
 --- Check if the minimum Neovim version is satisfied
 --- Expects only the minor version, e.g. "9" for 0.9.1
 ---@param version number
@@ -33,7 +32,7 @@ end
 
 -- Check if a variable is not empty nor nil
 M.isNotEmpty = function(s)
-  return s ~= nil and s ~= ""
+  return s ~= nil and s ~= ''
 end
 
 --- Check if path exists
@@ -43,11 +42,11 @@ end
 
 -- Return telescope files command
 M.project_files = function()
-  local path = vim.loop.cwd() .. "/.git"
+  local path = vim.loop.cwd() .. '/.git'
   if M.path_exists(path) then
-    return "Telescope git_files"
+    return 'Telescope git_files'
   else
-    return "Telescope find_files"
+    return 'Telescope find_files'
   end
 end
 
@@ -56,34 +55,34 @@ M.toggle_qf = function()
   local windows = fn.getwininfo()
   local qf_exists = false
   for _, win in pairs(windows) do
-    if win["quickfix"] == 1 then
+    if win['quickfix'] == 1 then
       qf_exists = true
     end
   end
   if qf_exists == true then
-    cmd("cclose")
+    cmd 'cclose'
     return
   end
   if M.isNotEmpty(fn.getqflist()) then
-    cmd("copen")
+    cmd 'copen'
   end
 end
 
 -- toggle colorcolumn
 M.toggle_colorcolumn = function()
-  local value = vim.api.nvim_get_option_value("colorcolumn", {})
-  if value == "" then
-    M.notify("Enable colocolumn", 1, "functions.lua")
-    vim.api.nvim_set_option_value("colorcolumn", "79", {})
+  local value = vim.api.nvim_get_option_value('colorcolumn', {})
+  if value == '' then
+    M.notify('Enable colocolumn', 1, 'functions.lua')
+    vim.api.nvim_set_option_value('colorcolumn', '79', {})
   else
-    M.notify("Disable colocolumn", 1, "functions.lua")
-    vim.api.nvim_set_option_value("colorcolumn", "", {})
+    M.notify('Disable colocolumn', 1, 'functions.lua')
+    vim.api.nvim_set_option_value('colorcolumn', '', {})
   end
 end
 
 -- move over a closing element in insert mode
 M.escapePair = function()
-  local closers = { ")", "]", "}", ">", "'", '"', "`", "," }
+  local closers = { ')', ']', '}', '>', "'", '"', '`', ',' }
   local line = vim.api.nvim_get_current_line()
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   local after = line:sub(col + 1, -1)
@@ -109,7 +108,7 @@ end
 function M.get_listed_buffers()
   local buffers = {}
   local len = 0
-  for buffer = 1, vim.fn.bufnr("$") do
+  for buffer = 1, vim.fn.bufnr '$' do
     if vim.fn.buflisted(buffer) == 1 then
       len = len + 1
       buffers[len] = buffer
@@ -126,7 +125,7 @@ end
 
 ---@param on_attach fun(client, buffer)
 function M.on_attach(on_attach)
-  vim.api.nvim_create_autocmd("LspAttach", {
+  vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
       local buffer = args.buf
       local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -138,11 +137,11 @@ end
 ---returns OS dependent path separator
 ---@return string
 M.path_separator = function()
-  local is_windows = vim.fn.has("win32") == 1
+  local is_windows = vim.fn.has 'win32' == 1
   if is_windows == true then
-    return "\\"
+    return '\\'
   else
-    return "/"
+    return '/'
   end
 end
 
@@ -152,7 +151,7 @@ end
 ---@return table
 M.merge_tables = function(t1, t2)
   for k, v in pairs(t2) do
-    if (type(v) == "table") and (type(t1[k] or false) == "table") then
+    if (type(v) == 'table') and (type(t1[k] or false) == 'table') then
       M.merge_tables(t1[k], t2[k])
     else
       t1[k] = v
@@ -176,18 +175,18 @@ end
 ---populate quickfixlist with the results
 M.search_todos = function()
   local result
-  result = vim.fn.system("rg --json --case-sensitive -w 'TODO|HACK|FIXME|NOTE'")
+  result = vim.fn.system "rg --json --case-sensitive -w 'TODO|HACK|FIXME|NOTE'"
   if result == nil then
     return
   end
-  local lines = vim.split(result, "\n")
+  local lines = vim.split(result, '\n')
   local qf_list = {}
 
   for _, line in ipairs(lines) do
-    if line ~= "" then
+    if line ~= '' then
       local data = vim.fn.json_decode(line)
       if data ~= nil then
-        if data.type == "match" then
+        if data.type == 'match' then
           local submatches = data.data.submatches[1]
           table.insert(qf_list, {
             filename = data.data.path.text,
@@ -202,10 +201,10 @@ M.search_todos = function()
 
   if next(qf_list) ~= nil then
     vim.fn.setqflist(qf_list)
-    vim.cmd("copen")
+    vim.cmd 'copen'
   else
-    local utils = require("utils.functions")
-    utils.notify("No results found!", vim.log.levels.INFO, "Search TODOs")
+    local utils = require 'utils.functions'
+    utils.notify('No results found!', vim.log.levels.INFO, 'Search TODOs')
   end
 end
 

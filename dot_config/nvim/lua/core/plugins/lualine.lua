@@ -4,25 +4,29 @@ local M = {
   dependencies = {
     {
       'kyazdani42/nvim-web-devicons',
-      lazy = true,
+      'meuter/lualine-so-fancy.nvim',
+      -- lazy = true,
     },
   },
   opts = {
+    options = {
+      component_separators = { left = '│', right = '│' },
+    },
     extensions = vim.g.config.plugins.lualine.extensions,
     sections = {
-      lualine_b = { 'branch', 'diff', 'diagnostics' },
+      lualine_a = { { 'fancy_mode' } },
+      lualine_b = { { 'fancy_branch' }, { 'fancy_diff' }, { 'fancy_diagnostics' } },
       lualine_c = {
-        {
-          function()
-            return ' zina '
-          end,
-        },
+        { 'fancy_cwd' },
+        -- {
+        --   function()
+        --     return ' zina '
+        --   end,
+        -- },
       },
-      lualine_x = {
-        { 'filename', path = 1 },
-      },
-      lualine_y = { 'progress' },
-      lualine_z = { 'location' },
+      lualine_x = { 'fancy_macro' },
+      lualine_y = { { 'fancy_progress' }, { 'fancy_location' } },
+      lualine_z = { { 'fancy_lsp_servers' } },
     },
     inactive_sections = {
       lualine_a = {},

@@ -9,7 +9,7 @@ local M = {
       group = icons.ui.Plus, -- symbol prepended to a group
     },
     window = {
-      border = "single", -- none, single, double, shadow
+      border = "none", -- none, single, double, shadow
       position = "bottom", -- bottom, top
       margin = { 0, 10, 3, 10 }, -- extra window margin [top, right, bottom, left]
       padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]

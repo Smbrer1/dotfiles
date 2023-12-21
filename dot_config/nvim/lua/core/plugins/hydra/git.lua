@@ -1,11 +1,6 @@
 local Hydra = require 'hydra'
 local gitsigns = require 'gitsigns'
 
--- local hint = [[
---  _J_: next hunk _K_: prev hunk
--- ^^^^
--- _q_: exit
--- ]]
 local hint = [[
  _J_: next hunk   _s_: stage hunk        _d_: show deleted   _b_: blame line
  _K_: prev hunk   _u_: undo last stage   _p_: preview hunk   _B_: blame show full
@@ -21,8 +16,8 @@ Hydra {
     color = 'pink',
     invoke_on_body = true,
     hint = {
-      position = 'bottom',
-      border = 'rounded',
+      position = 'top-right',
+      border = 'solid',
     },
   },
   mode = { 'n', 'x' },

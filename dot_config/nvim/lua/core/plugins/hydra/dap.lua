@@ -1,3 +1,4 @@
+---@class Hydra
 local Hydra = require("hydra")
 local dap = require("dap")
 
