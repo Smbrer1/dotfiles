@@ -1,6 +1,7 @@
 local M = {
   'rest-nvim/rest.nvim',
   dependencies = { { 'nvim-lua/plenary.nvim' } },
+  ft = 'http',
   config = function()
     require('rest-nvim').setup {
       -- Open request results in a horizontal split
@@ -32,15 +33,15 @@ local M = {
         -- executables or functions for formatting response body [optional]
         -- set them to false if you want to disable them
         formatters = {
-          json = "jq",
+          json = 'jq',
           html = function(body)
-            return vim.fn.system({"tidy", "-i", "-q", "-"}, body)
-          end
+            return vim.fn.system({ 'tidy', '-i', '-q', '-' }, body)
+          end,
         },
       },
       -- Jump to request line on run
       jump_to_request = false,
-      env_file = '.env',
+      env_file = './http/.env',
       custom_dynamic_variables = {},
       yank_dry_run = true,
       search_back = true,
