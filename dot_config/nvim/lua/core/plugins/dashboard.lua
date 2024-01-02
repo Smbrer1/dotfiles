@@ -1,3 +1,7 @@
+local function neorg()
+  vim.cmd("Neorg journal today")
+  -- vim.cmd("Neorg templates load journal")
+end
 local M = {
   'nvimdev/dashboard-nvim',
   event = 'VimEnter',
@@ -14,13 +18,14 @@ local M = {
         header = require('core.plugins.logos.good').megaberk,
         -- stylua: ignore
         center = {
-          { action = "Telescope find_files",                   desc = " Find file",    icon = " ", key = "f" },
-          { action = "ene | startinsert",                      desc = " New file",     icon = " ", key = "n" },
-          { action = "Telescope oldfiles",                     desc = " Recent files", icon = " ", key = "r" },
-          { action = "Telescope live_grep",                    desc = " Find text",    icon = " ", key = "g" },
-          { action = "e $MYVIMRC | cd %:p:h | wincmd k | pwd", desc = " Config",       icon = " ", key = "c" },
-          { action = "Lazy",                                   desc = " Lazy",         icon = "󰒲 ", key = "l" },
-          { action = "qa",                                     desc = " Quit",         icon = " ", key = "q" },
+          { action = "Telescope find_files",                   desc = " Find file",      icon = " ", key = "f" },
+          { action = neorg,                    desc = " Todays journal", icon = "󰠮 ", key = "j" },
+          { action = "ene | startinsert",                      desc = " New file",       icon = " ", key = "n" },
+          { action = "Telescope oldfiles",                     desc = " Recent files",   icon = " ", key = "r" },
+          { action = "Telescope live_grep",                    desc = " Find text",      icon = " ", key = "g" },
+          { action = "e $MYVIMRC | cd %:p:h | wincmd k | pwd", desc = " Config",         icon = " ", key = "c" },
+          { action = "Lazy",                                   desc = " Lazy",           icon = "󰒲 ", key = "l" },
+          { action = "qa",                                     desc = " Quit",           icon = " ", key = "q" },
         },
         footer = function()
           local stats = require('lazy').stats()

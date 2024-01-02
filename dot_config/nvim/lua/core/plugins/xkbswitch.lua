@@ -1,1 +1,0 @@
-return { 'lyokha/vim-xkbswitch'}

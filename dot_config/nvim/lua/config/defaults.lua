@@ -34,6 +34,7 @@ return {
     shiftwidth = 2, -- the number of spaces inserted for each indentation
     tabstop = 2, -- how many columns a tab counts for
     expandtab = true, -- use spaces instead of tabs
+    laststatus = 3, -- 3 for global statusline 2 for per window statusline
     showmode = false, -- we don't need to see things like -- INSERT -- anymore
     sidescrolloff = 5, -- The minimal number of columns to scroll horizontally
     signcolumn = 'yes', -- Always show the signcolumn, otherwise it would shift the text each time

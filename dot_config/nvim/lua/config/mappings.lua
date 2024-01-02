@@ -76,6 +76,4 @@ map('t', '<esc>', '<c-\\><c-n>', { noremap = true })
 -- LSP hover
 map('n', 'K', vim.lsp.buf.hover, { desc = 'Hover doc' })
 
-map('n', '<leader>th', '<cmd> Hardtime toggle<cr>', { desc = 'Remove bad habbits' })
-
 map('n', '<leader>chh', "<cmd> lua require('rest-nvim').run()<cr>", { desc = 'Run http request' })
