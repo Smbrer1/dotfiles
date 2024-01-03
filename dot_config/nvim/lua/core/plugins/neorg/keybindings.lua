@@ -1,4 +1,4 @@
-local prefix = "<leader>n"
+local prefix = "<LocalLeader>n"
 local function goto_headline(which)
   local ts_utils = require("nvim-treesitter.ts_utils")
   local tsparser = vim.treesitter.get_parser()

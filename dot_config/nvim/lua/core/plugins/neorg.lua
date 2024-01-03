@@ -8,7 +8,6 @@ local M = {
     'mason.nvim',
     'nvim-lua/plenary.nvim',
     'laher/neorg-exec',
-    '3rd/image.nvim',
     {
       'pysan3/neorg-templates-draft',
       dependencies = { 'L3MON4D3/LuaSnip' },
@@ -70,7 +69,6 @@ local function load_plugins()
       config = {
         workspaces = list_workspaces {
           M.default_workspace,
-          'Works',
         },
         default_workspace = 'default',
       },
@@ -79,7 +77,7 @@ local function load_plugins()
       -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
       config = {
         default_keybinds = true,
-        neorg_leader = '<Leader>',
+        neorg_leader = '<LocalLeader>',
         hook = require('core.plugins.neorg.keybindings').hook,
       },
     },
