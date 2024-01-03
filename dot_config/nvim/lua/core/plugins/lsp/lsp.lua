@@ -4,6 +4,13 @@ local utils = require("core.plugins.lsp.utils")
 local lsp_settings = require("core.plugins.lsp.settings")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+-- NVIM UFO
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+
 local vlsp = vim.lsp
 -- enable autocompletion via nvim-cmp
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
@@ -36,14 +43,3 @@ vlsp.handlers["textDocument/publishDiagnostics"] = vlsp.with(vlsp.diagnostic.on_
   underline = false,
 })
 
-vim.api.nvim_create_user_command(
-  "LtexLang",
-  "lua require('core.plugins.lsp.utils').set_ltex_lang(<q-args>)",
-  { nargs = 1, desc = "Set ltex-ls language" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>mx",
-  "<cmd>lua require('core.plugins.lsp.utils').set_ltex_lang(vim.g.config.plugins.ltex.additional_lang)<cr>",
-  { desc = "Set ltex-ls language" }
-)

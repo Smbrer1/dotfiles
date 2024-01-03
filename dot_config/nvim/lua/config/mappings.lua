@@ -14,8 +14,6 @@ map('v', 'p', '"_dp')
 map('v', 'P', '"_dP')
 
 -- buffers
-map('n', '<tab>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
-map('n', '<S-tab>', '<cmd>bprevious<cr>', { desc = 'Prev buffer' })
 map('n', '<leader>Bd', '<cmd>%bd|e#|bd#<cr>', { desc = '[C]lose all but the current [B]uffer' })
 map('n', '<leader>Bc', '<cmd>bp<bar>sp<bar>bn<bar>bd<CR>', { desc = '[D]elete current [B]uffer' })
 
@@ -73,7 +71,12 @@ end
 -- Terminal Management
 map('t', '<esc>', '<c-\\><c-n>', { noremap = true })
 
--- LSP hover
-map('n', 'K', vim.lsp.buf.hover, { desc = 'Hover doc' })
+-- LSP hover and fold preview
+map('n', 'K', function()
+  local winid = require('ufo').peekFoldedLinesUnderCursor()
+  if not winid then
+    vim.lsp.buf.hover()
+  end
+end, { desc = 'Hover doc or preview fold' })
 
 map('n', '<leader>chh', "<cmd> lua require('rest-nvim').run()<cr>", { desc = 'Run http request' })
