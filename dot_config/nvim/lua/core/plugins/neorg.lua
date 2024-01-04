@@ -61,7 +61,7 @@ local function load_plugins()
     ['core.ui.calendar'] = {},
     ['core.journal'] = {
       config = {
-        strategy = 'nested',
+        strategy = 'flat',
         workspace = M.default_workspace,
       },
     },

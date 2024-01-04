@@ -38,4 +38,26 @@ return {
       }
     )
   ),
+  env.s(
+    "ggm",
+    env.fmt(
+      [[
+        //go:generate go run github.com/vektra/mockery/v2@v2.28.2 --name={}
+      ]],
+      {
+        env.i(1, "name")
+      }
+    )
+  ),
+  env.s(
+    "gg",
+    env.fmt(
+      [[
+        //go:generate go run {}
+      ]],
+      {
+        env.i(1, "package")
+      }
+    )
+  ),
 }

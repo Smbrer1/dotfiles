@@ -19,8 +19,8 @@ return {
           hack = { pattern = '%f[%w]()HACK()%f[%W]', group = 'MiniHipatternsHack' },
           todo = { pattern = '%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsTodo' },
           note = { pattern = '%f[%w]()NOTE()%f[%W]', group = 'MiniHipatternsNote' },
+          gogen = { pattern = '%f[%w]()go:generate()%f[%W]', group = 'MiniHipatternsNote' },
           hex_color = hi.gen_highlighter.hex_color(),
-          -- TODO: tailwind integration?
         },
       }
     end,
