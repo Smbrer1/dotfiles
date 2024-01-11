@@ -1,12 +1,16 @@
 local M = {
-  "utilyre/barbecue.nvim",
-  name = "barbecue",
-  version = "*",
+  'utilyre/barbecue.nvim',
+  name = 'barbecue',
+  version = '*',
   dependencies = {
-    "SmiteshP/nvim-navic",
+    'SmiteshP/nvim-navic',
   },
   opts = {
-    -- configurations go here
+    theme = {
+      normal = {
+        bg = '#1f2335',
+      },
+    },
   },
 }
 return M

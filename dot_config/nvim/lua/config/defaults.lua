@@ -222,6 +222,7 @@ return {
     'toml',
     'vim',
     'yaml',
+    'http',
   },
 
   -- LSPs that should be installed by Mason-lspconfig

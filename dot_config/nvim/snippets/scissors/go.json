@@ -1,0 +1,12 @@
+{
+  "gomain": {
+    "body": [
+      "package main",
+      "",
+      "func main (){",
+      "\t${1:code}",
+      "}"
+    ],
+    "prefix": "gomain"
+  }
+}
