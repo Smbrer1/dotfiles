@@ -20,18 +20,31 @@ local config = merge(mappings, mtt, fonts, gui, shell, colors)
 
 require("setups.right-status").setup()
 require("setups.left-status").setup()
-require("setups.notify").setup()
+-- require("setups.notify").setup()
 require("tabs").setup(config)
--- require("setups.tab-title").setup()
+require("plugins").setup(config)
 local wezterm = require("wezterm")
-local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
-workspace_switcher.apply_to_config(config)
-workspace_switcher.set_workspace_formatter(function(label)
-  return wezterm.format({
-    { Attribute = { Intensity = "Bold" } },
-    { Foreground = { Color = "#7AA2F7" } },
-    { Text = "󱂬: " .. label },
-  })
+wezterm.on("user-var-changed", function(window, pane, name, value)
+  local overrides = window:get_config_overrides() or {}
+  if name == "ZEN_MODE" then
+    local incremental = value:find("+")
+    local number_value = tonumber(value)
+    if incremental ~= nil then
+      while number_value > 0 do
+        window:perform_action(wezterm.action.IncreaseFontSize, pane)
+        number_value = number_value - 1
+      end
+      overrides.enable_tab_bar = false
+    elseif number_value < 0 then
+      window:perform_action(wezterm.action.ResetFontSize, pane)
+      overrides.font_size = nil
+      overrides.enable_tab_bar = true
+    else
+      overrides.font_size = number_value
+      overrides.enable_tab_bar = false
+    end
+  end
+  window:set_config_overrides(overrides)
 end)
 
 return config

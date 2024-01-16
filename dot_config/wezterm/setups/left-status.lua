@@ -62,10 +62,6 @@ end
 M.setup = function()
   w.on("update-status", function(window, _)
     M.cells = {}
-    local n = M.calculate_padding(window)
-    local width = os.capture("tput cols", false)
-    local padding = string.len(window:active_workspace())
-    local final_padding = width - padding - 10*n
     M.push(window:active_workspace():gsub("^.*/", ""), "  ", M.colors.battery_fg, M.colors.battery_bg, false)
     -- M.push(string.rep(" ", final_padding+(-5+2*n-1)), "", "", M.colors.padding_bg, false)
     -- -4 -2 0 2 4

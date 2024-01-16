@@ -1,5 +1,6 @@
 local M = {
   '3rd/image.nvim',
+  ft = "norg",
   config = function()
     package.path = package.path .. ';' .. vim.fn.expand '$HOME' .. '/.luarocks/share/lua/5.1/?/init.lua;'
     package.path = package.path .. ';' .. vim.fn.expand '$HOME' .. '/.luarocks/share/lua/5.1/?.lua;'

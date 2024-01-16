@@ -34,7 +34,7 @@ Hydra({
     invoke_on_body = true,
     hint = {
       position = "middle",
-      border = "solid",
+      -- border = "solid",
     },
   },
   mode = "n",

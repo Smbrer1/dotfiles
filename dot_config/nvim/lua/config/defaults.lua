@@ -203,6 +203,7 @@ return {
   treesitter_ensure_installed = {
     'bash',
     'cmake',
+    'php',
     'css',
     'dockerfile',
     'go',
@@ -238,6 +239,7 @@ return {
     'tailwindcss',
     'tsserver',
     'yamlls',
+    'phpactor',
   },
 
   -- Tools that should be installed by Mason

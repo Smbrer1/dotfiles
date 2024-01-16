@@ -18,7 +18,7 @@ local dap_hydra = Hydra({
     invoke_on_body = true,
     hint = {
       position = "top-right",
-      border = "rounded",
+      -- border = "rounded",
     },
   },
   name = "dap",

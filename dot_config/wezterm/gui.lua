@@ -16,6 +16,7 @@ local gpus = wezterm.gui.enumerate_gpus()
 -- M.enable_wayland = true
 M.enable_wayland = false
 M.front_end = 'WebGpu'
+M.enable_kitty_graphics=true
 
 M.command_palette_bg_color = "#1A1B26"
 M.command_palette_fg_color = "#c0caf5"

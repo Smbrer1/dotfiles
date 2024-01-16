@@ -1,6 +1,5 @@
 local M = {
   'chrisgrieser/nvim-scissors',
-  dependencies = 'nvim-telescope/telescope.nvim', -- optional
   config = function(_)
     require('scissors').setup {
       snippetDir = vim.fn.stdpath 'config' .. '/snippets/scissors',
