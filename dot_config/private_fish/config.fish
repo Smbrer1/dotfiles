@@ -12,6 +12,3 @@ set -gx EDITOR /usr/bin/nvim
 # ~/.config/fish/config.fish):
 #
 zoxide init fish | source
-setxkbmap -option ctrl:nocaps && xcape -e 'Control_L=Escape'
-
-thefuck --alias | source
