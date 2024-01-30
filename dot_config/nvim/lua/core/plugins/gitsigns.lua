@@ -16,8 +16,6 @@ local M = {
           name = "Git",
           M = { "Hydra move" },
           ["<Enter>"] = { "<cmd>lua require('neogit').open()<cr>", "Neogit" },
-          c = { "<cmd>G commit %<cr>", "Commit buffer" },
-          P = { "<cmd>G push<cr>", "Push" },
           S = { gs.stage_buffer, "Stage buffer" },
           u = { gs.undo_stage_hunk, "Undo stage hunk" },
           r = {
@@ -37,7 +35,6 @@ local M = {
         },
       }, { prefix = "<leader>", mode = "n", default_options })
 
-      -- TODO: with german qwertz this bindings are awful
       map("n", "]c", function()
         if vim.wo.diff then
           return "]c"

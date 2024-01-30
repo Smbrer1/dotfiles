@@ -37,6 +37,7 @@ local M = {
           c = {
             name = "Coding",
             a = { "<cmd>GoCodeAction<cr>", "Code action" },
+            l = { "<cmd>GoCodeLenAct<cr>", "Toggle Lens" },
             e = { "<cmd>GoIfErr<cr>", "Add if err" },
             h = {
               name = "Helper",
@@ -49,9 +50,6 @@ local M = {
               i = { "<cmd>GoModInit<cr>", "Go mod init" },
             },
             i = { "<cmd>GoToggleInlay<cr>", "Toggle inlay" },
-            l = { "<cmd>GoLint<cr>", "Run linter" },
-            o = { "<cmd>GoPkgOutline<cr>", "Outline" },
-            r = { "<cmd>GoRun<cr>", "Run" },
             S = { "<cmd>GoFillStruct<cr>", "Autofill struct" },
             t = {
               name = "Tests",
@@ -61,11 +59,6 @@ local M = {
               v = { "<cmd>GoAltV!<cr>", "Open alt file in vertical split" },
               u = { "<cmd>GoTestFunc<cr>", "Run test for current func" },
               f = { "<cmd>GoTestFile<cr>", "Run test for current file" },
-            },
-            x = {
-              name = "Code Lens",
-              l = { "<cmd>GoCodeLenAct<cr>", "Toggle Lens" },
-              a = { "<cmd>GoCodeAction<cr>", "Code Action" },
             },
           },
         }, { prefix = "<leader>", mode = "n", default_options })

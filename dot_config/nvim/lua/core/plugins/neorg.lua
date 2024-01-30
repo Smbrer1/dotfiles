@@ -2,15 +2,9 @@ local M = {
   'nvim-neorg/neorg',
   ft = 'norg',
   dependencies = {
-    'nvim-treesitter/nvim-treesitter',
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    'nvim-cmp',
-    'mason.nvim',
-    'nvim-lua/plenary.nvim',
     'laher/neorg-exec',
     {
       'pysan3/neorg-templates-draft',
-      dependencies = { 'L3MON4D3/LuaSnip' },
     },
   },
   build = ':Neorg sync-parsers',
@@ -48,7 +42,6 @@ local function load_plugins()
     ['core.completion'] = { config = { engine = 'nvim-cmp', name = '[Norg]' } },
     ['core.esupports.metagen'] = { config = { type = 'auto', update_date = true } },
     ['core.integrations.nvim-cmp'] = {},
-    ['core.integrations.image'] = {},
     ['core.qol.toc'] = {},
     ['core.qol.todo_items'] = {},
     ['core.looking-glass'] = {},

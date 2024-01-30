@@ -1,30 +1,42 @@
 local M = {
-  "ThePrimeagen/harpoon",
-  dependencies = "nvim-lua/plenary.nvim",
-  keys = {
-    "gh",
-    "gH",
-  },
+  'ThePrimeagen/harpoon',
+  branch = 'harpoon2',
+  dependencies = 'nvim-lua/plenary.nvim',
+  event = { 'BufReadPre', 'BufNewFile' },
   config = function()
-    require("harpoon").setup({
-      global_settings = {
-        mark_branch = true,
-      },
-    })
+    local harpoon = require 'harpoon'
 
-    local keymap = vim.keymap
+    -- REQUIRED
+    harpoon:setup()
+    -- REQUIRED
 
-    local function toggle_move()
-      if vim.v.count > 0 then
-        -- this does not work (yet?)
-        -- require('harpoon.ui').nav_file(vim.v.count)
-        return '<cmd>lua require("harpoon.ui").nav_file(vim.v.count)<CR>'
-      else
-        require("harpoon.mark").toggle_file()
-      end
-    end
-    keymap.set("n", "gh", toggle_move, { expr = true })
-    keymap.set("n", "gH", require("harpoon.ui").toggle_quick_menu)
+    vim.keymap.set('n', '<leader>a', function()
+      harpoon:list():append()
+    end)
+    vim.keymap.set('n', '<C-e>', function()
+      harpoon.ui:toggle_quick_menu(harpoon:list())
+    end)
+
+    vim.keymap.set('n', '<C-n>', function()
+      harpoon:list():select(1)
+    end)
+    vim.keymap.set('n', '<C-t>', function()
+      harpoon:list():select(2)
+    end)
+    vim.keymap.set('n', '<C-m>', function()
+      harpoon:list():select(3)
+    end)
+    vim.keymap.set('n', '<C-g>', function()
+      harpoon:list():select(4)
+    end)
+
+    -- Toggle previous & next buffers stored within Harpoon list
+    vim.keymap.set('n', '<C-R-P>', function()
+      harpoon:list():prev()
+    end)
+    vim.keymap.set('n', '<C-R-N>', function()
+      harpoon:list():next()
+    end)
   end,
 }
 return M

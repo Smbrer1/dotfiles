@@ -1,6 +1,6 @@
 local M = {
-  "hedyhli/outline.nvim",
-  cmd = { "Outline", "OutlineOpen" },
+  'hedyhli/outline.nvim',
+  cmd = { 'Outline', 'OutlineOpen' },
   opts = {
     symbol_folding = {
       -- Depth past which nodes will be folded by default
@@ -8,7 +8,7 @@ local M = {
     },
   },
   keys = {
-    { "<leader>tO", "<cmd>Outline<cr>", desc = "Toggle Outline" },
+    { '<leader>to', '<cmd>Outline<cr>', desc = 'Toggle Outline' },
   },
 }
 

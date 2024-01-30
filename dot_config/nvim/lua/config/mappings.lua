@@ -14,8 +14,8 @@ map('v', 'p', '"_dp')
 map('v', 'P', '"_dP')
 
 -- buffers
-map('n', '<leader>Bd', '<cmd>%bd|e#|bd#<cr>', { desc = '[C]lose all but the current [B]uffer' })
-map('n', '<leader>Bc', '<cmd>bp<bar>sp<bar>bn<bar>bd<CR>', { desc = '[D]elete current [B]uffer' })
+map('n', '<leader>Bd', '<cmd>%bd|e#|bd#<cr>', { desc = 'Delete all but current buffer' })
+map('n', '<leader>Bc', '<cmd>bp<bar>sp<bar>bn<bar>bd<CR>', { desc = 'Close current buffer' })
 
 -- Cancel search highlighting with ESC
 map({ 'i', 'n' }, '<esc>', '<cmd>noh<cr><esc>', { desc = 'Clear hlsearch and ESC' })
@@ -24,20 +24,16 @@ map({ 'i', 'n' }, '<esc>', '<cmd>noh<cr><esc>', { desc = 'Clear hlsearch and ESC
 map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Floating diagnostic' })
-map('n', '<leader>ql', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-
--- Quickfix
-map('n', '<leader>qj', '<cmd>cnext<cr>', { desc = 'Next entry' })
-map('n', '<leader>qk', '<cmd>cprevious<cr>', { desc = 'Previous entry' })
-map('n', '<leader>qq', "<cmd>lua require('utils.functions').toggle_qf()<cr>", { desc = 'Toggle Quickfix' })
--- Search for 'FIXME', 'HACK', 'TODO', 'NOTE'
-map('n', '<leader>qt', function()
-  utils.search_todos()
-end, { desc = 'List TODOs' })
-
--- Tab Navigation
-map('n', '<leader>Tn', 'gt', { desc = '[N]ext [T]ab' })
-map('n', '<leader>Tc', '<cmd>tabclose<cr>', { desc = '[C]lose [T]ab' })
+-- map('n', '<leader>ql', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+--
+-- -- Quickfix
+-- map('n', '<leader>qj', '<cmd>cnext<cr>', { desc = 'Next entry' })
+-- map('n', '<leader>qk', '<cmd>cprevious<cr>', { desc = 'Previous entry' })
+-- map('n', '<leader>qq', "<cmd>lua require('utils.functions').toggle_qf()<cr>", { desc = 'Toggle Quickfix' })
+-- -- Search for 'FIXME', 'HACK', 'TODO', 'NOTE'
+-- map('n', '<leader>qt', function()
+--   utils.search_todos()
+-- end, { desc = 'List TODOs' })
 
 -- Buffer Navigation
 -- resizing splits
@@ -50,12 +46,6 @@ map('n', '<c-h>', require('smart-splits').move_cursor_left)
 map('n', '<c-j>', require('smart-splits').move_cursor_down)
 map('n', '<c-k>', require('smart-splits').move_cursor_up)
 map('n', '<c-l>', require('smart-splits').move_cursor_right)
-
--- Python fixtures
-map('n', 'gF', '<cmd>PytrizeJumpFixture<cr>', { desc = 'Go to Fixture defenition' })
-
--- DataBase connect UI
-map('n', '<leader>cd', '<cmd>DBUIToggle<cr>', { desc = 'DataBase' })
 
 -- Inlay Hint
 if vim.lsp.inlay_hint then
@@ -78,5 +68,3 @@ map('n', 'K', function()
     vim.lsp.buf.hover()
   end
 end, { desc = 'Hover doc or preview fold' })
-
-map('n', '<leader>chh', "<cmd> lua require('rest-nvim').run()<cr>", { desc = 'Run http request' })

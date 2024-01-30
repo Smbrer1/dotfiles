@@ -207,13 +207,9 @@ return {
     'css',
     'dockerfile',
     'go',
-    'hcl',
     'html',
-    'java',
     'javascript',
     'json',
-    'kotlin',
-    'ledger',
     'lua',
     'markdown',
     'markdown_inline',
@@ -224,6 +220,7 @@ return {
     'vim',
     'yaml',
     'http',
+    'c',
   },
 
   -- LSPs that should be installed by Mason-lspconfig

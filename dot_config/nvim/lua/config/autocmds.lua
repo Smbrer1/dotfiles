@@ -14,27 +14,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   desc = "Disable New Line Comment",
 })
 
--- wrap words "softly" (no carriage return) in mail buffer
-api.nvim_create_autocmd("Filetype", {
-  pattern = "mail",
-  callback = function()
-    vim.opt.textwidth = 0
-    vim.opt.wrapmargin = 0
-    vim.opt.wrap = true
-    vim.opt.linebreak = true
-    vim.opt.columns = 80
-    vim.opt.colorcolumn = "80"
-  end,
-})
-
--- detect typst filetype
-api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.typ" },
-  callback = function()
-    vim.api.nvim_command("set filetype=typst")
-  end,
-})
-
 -- Highlight on yank
 api.nvim_create_autocmd("TextYankPost", {
   callback = function()
@@ -95,7 +74,7 @@ api.nvim_create_autocmd(
   { "BufRead", "BufNewFile" },
   -- { pattern = { "*.txt", "*.md", "*.tex" }, command = [[setlocal spell<cr> setlocal spelllang=en,de<cr>]] }
   {
-    pattern = { "*.txt", "*.md", "*.tex", "*.typ", "*.norg" },
+    pattern = { "*.txt", "*.md", "*.typ", "*.norg" },
     callback = function()
       vim.opt.spell = true
       vim.opt.spelllang = "en,ru"
