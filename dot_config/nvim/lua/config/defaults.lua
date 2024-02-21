@@ -180,7 +180,7 @@ return {
 
   theme = {
     -- catppuccin, nightfox, tokyonight, tundra, kanagawa
-    name = 'tokyonight',
+    name = 'oxocarbon',
     catppuccin = {
       -- catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
       variant = 'catppuccin-mocha',
@@ -197,16 +197,21 @@ return {
       -- night storm day moon
       variant = 'night',
     },
+    oxocarbon = {},
   },
   -- treesitter parsers to be installed
   -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   treesitter_ensure_installed = {
     'bash',
+    'proto',
+    'vimdoc',
     'cmake',
     'php',
     'css',
     'dockerfile',
     'go',
+    'gomod',
+    'gosum',
     'html',
     'javascript',
     'json',
@@ -228,7 +233,7 @@ return {
     'bashls',
     'dockerls',
     'jsonls',
-    -- TODO managed by go.nvim
+    'bufls',
     'gopls',
     'marksman',
     'pylsp',

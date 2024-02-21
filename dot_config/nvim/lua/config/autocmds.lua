@@ -57,18 +57,6 @@ api.nvim_create_autocmd("FileType", { pattern = "man", command = [[nnoremap <buf
 -- disable list option in certain filetypes
 api.nvim_create_autocmd("FileType", { pattern = { "NeoGitStatus" }, command = [[setlocal list!]] })
 
--- show cursor line only in active window
-local cursorGrp = api.nvim_create_augroup("CursorLine", { clear = true })
-api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
-  pattern = "*",
-  command = "set cursorline",
-  group = cursorGrp,
-})
-api.nvim_create_autocmd(
-  { "InsertEnter", "WinLeave" },
-  { pattern = "*", command = "set nocursorline", group = cursorGrp }
-)
-
 -- Enable spell checking for certain file types
 api.nvim_create_autocmd(
   { "BufRead", "BufNewFile" },

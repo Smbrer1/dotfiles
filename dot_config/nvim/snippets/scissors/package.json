@@ -6,6 +6,12 @@
           "go"
         ],
         "path": "./go.json"
+      },
+      {
+        "language": [
+          "NeogitCommitMessage"
+        ],
+        "path": "./NeogitCommitMessage.json"
       }
     ]
   },

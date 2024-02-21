@@ -31,9 +31,6 @@ for _, lsp in ipairs(conf.lsp_servers) do
     settings = {
       json = lsp_settings.json,
       Lua = lsp_settings.lua,
-      ltex = lsp_settings.ltex,
-      redhat = { telemetry = { enabled = false } },
-      texlab = lsp_settings.tex,
       yaml = lsp_settings.yaml,
     },
   })

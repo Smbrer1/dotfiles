@@ -11,7 +11,7 @@ local M = {
           cancel = 'q',
           saveChanges = '<CR>',
           goBackToSearch = '<BS>',
-          delete = '<C-BS>',
+          deleteSnippet = '<C-BS>',
           openInFile = '<C-o>',
           insertNextToken = '<C-t>', -- works in insert & normal mode
         },

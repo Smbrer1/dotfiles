@@ -8,6 +8,8 @@ map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 -- better indenting
 map('v', '<', '<gv')
 map('v', '>', '>gv')
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")
 
 -- paste over currently selected text without yanking it
 map('v', 'p', '"_dp')
@@ -37,15 +39,15 @@ map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Floating diagnostic' 
 
 -- Buffer Navigation
 -- resizing splits
-map('n', '<a-c-h>', require('smart-splits').resize_left)
-map('n', '<a-c-j>', require('smart-splits').resize_down)
-map('n', '<a-c-k>', require('smart-splits').resize_up)
-map('n', '<a-c-l>', require('smart-splits').resize_right)
+map('n', '<M-H>', require('smart-splits').resize_left)
+map('n', '<M-J>', require('smart-splits').resize_down)
+map('n', '<M-K>', require('smart-splits').resize_up)
+map('n', '<M-L>', require('smart-splits').resize_right)
 -- moving between splits
-map('n', '<c-h>', require('smart-splits').move_cursor_left)
-map('n', '<c-j>', require('smart-splits').move_cursor_down)
-map('n', '<c-k>', require('smart-splits').move_cursor_up)
-map('n', '<c-l>', require('smart-splits').move_cursor_right)
+map('n', '<M-h>', require('smart-splits').move_cursor_left)
+map('n', '<M-j>', require('smart-splits').move_cursor_down)
+map('n', '<M-k>', require('smart-splits').move_cursor_up)
+map('n', '<M-l>', require('smart-splits').move_cursor_right)
 
 -- Inlay Hint
 if vim.lsp.inlay_hint then

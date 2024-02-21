@@ -2,7 +2,6 @@
 local M = {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
-  event = { 'BufReadPost', 'BufNewFile' },
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'RRethy/nvim-treesitter-endwise',
@@ -25,7 +24,6 @@ local M = {
         keymaps = {
           init_selection = '<CR>',
           scope_incremental = '<CR>',
-          scope_decremental = '<S-CR>',
           node_incremental = '<TAB>',
           node_decremental = '<S-TAB>',
         },

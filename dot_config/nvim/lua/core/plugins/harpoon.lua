@@ -2,17 +2,18 @@ local M = {
   'ThePrimeagen/harpoon',
   branch = 'harpoon2',
   dependencies = 'nvim-lua/plenary.nvim',
-  event = { 'BufReadPre', 'BufNewFile' },
+  event = {'VimEnter'},
+  enabled = true,
   config = function()
     local harpoon = require 'harpoon'
 
     -- REQUIRED
-    harpoon:setup()
+    harpoon:setup({})
     -- REQUIRED
 
     vim.keymap.set('n', '<leader>a', function()
       harpoon:list():append()
-    end)
+    end, {desc = "Harpoon mark"})
     vim.keymap.set('n', '<C-e>', function()
       harpoon.ui:toggle_quick_menu(harpoon:list())
     end)

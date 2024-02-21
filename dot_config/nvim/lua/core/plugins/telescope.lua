@@ -152,7 +152,7 @@ local M = {
         },
         -- border = false,
         prompt_prefix = table.concat { icons.arrows.ChevronRight, ' ' },
-        selection_caret = icons.arrows.CurvedArrowRight,
+        selection_caret = icons.arrows.DoubleArrowRight,
         entry_prefix = '  ',
         multi_icon = icons.arrows.Diamond,
         initial_mode = 'insert',

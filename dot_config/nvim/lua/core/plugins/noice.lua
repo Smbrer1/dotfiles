@@ -3,7 +3,7 @@ local M = {
   event = 'VeryLazy',
   dependencies = {
     'MunifTanjim/nui.nvim',
-    'rcarriga/nvim-notify',
+    -- 'rcarriga/nvim-notify',
   },
   enabled = vim.g.config.plugins.noice.enable,
 }
@@ -210,7 +210,16 @@ function M.config()
       },
     }, ---@see section on views
     ---@type NoiceRouteConfig[]
-    routes = {}, --- @see section on routes
+    routes = {
+      {
+        filter = {
+        event = 'msg_show',
+        kind = '',
+        find = 'more line',
+      },
+      opts = { skip = true },
+    } --- @see section on routes
+    },
     ---@type table<string, NoiceFilter>
     status = {}, --- @see section on statusline components
     ---@type NoiceFormatOptions
