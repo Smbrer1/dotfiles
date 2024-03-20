@@ -1,5 +1,6 @@
 local M = {
   'chrisgrieser/nvim-scissors',
+  event = 'InsertEnter',
   config = function(_)
     require('scissors').setup {
       snippetDir = vim.fn.stdpath 'config' .. '/snippets/scissors',

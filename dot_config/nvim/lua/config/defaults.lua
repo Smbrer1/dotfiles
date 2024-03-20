@@ -216,6 +216,7 @@ return {
     'javascript',
     'json',
     'lua',
+    'typst',
     'markdown',
     'markdown_inline',
     'query',
@@ -231,6 +232,7 @@ return {
   -- LSPs that should be installed by Mason-lspconfig
   lsp_servers = {
     'bashls',
+    'typst_lsp',
     'dockerls',
     'jsonls',
     'bufls',
@@ -251,11 +253,9 @@ return {
     'prettier',
     'stylua',
     'shfmt',
+    'ruff-lsp',
     -- Linter
-    'eslint_d',
-    'shellcheck',
     'yamllint',
-    'ruff',
     -- DAP
     'delve',
     'debugpy',

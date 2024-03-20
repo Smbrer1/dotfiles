@@ -1,5 +1,6 @@
 local M = {
   "nvimtools/hydra.nvim",
+  enabled = false,
   event = "VeryLazy",
   dependencies = {
     -- "anuvyklack/keymap-layer.nvim",

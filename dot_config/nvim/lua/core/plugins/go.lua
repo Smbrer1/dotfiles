@@ -6,7 +6,6 @@ local M = {
   ft = { "go", "gomod" },
   build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   config = function()
-    local icons = require("utils.icons")
     require("go").setup({
       -- NOTE: all LSP and formatting related options are disabeld.
       -- NOTE: is not related to core.plugins.lsp
@@ -15,7 +14,7 @@ local M = {
       -- goimport = "gopls", -- goimport command, can be gopls[default] or goimport
       -- fillstruct = "gopls", -- can be nil (use fillstruct, slower) and gopls
       -- gofmt = "gofumpt", -- gofmt cmd,
-      max_line_len = 120, -- max line length in goline format
+      -- max_line_len = 120, -- max line length in goline format
       -- tag_transform = false, -- tag_transfer  check gomodifytags for details
       -- test_template = "", -- default to testify if not set; g:go_nvim_tests_template  check gotests for details
       -- test_template_dir = "", -- default to nil if not set; g:go_nvim_tests_template_dir  check gotests for details
@@ -48,6 +47,7 @@ local M = {
               v = { "<cmd>GoVet<cr>", "Go vet" },
               t = { "<cmd>GoModTidy<cr>", "Go mod tidy" },
               i = { "<cmd>GoModInit<cr>", "Go mod init" },
+              I = { "<cmd>GoImpl<cr>", "Go implement interface" },
             },
             i = { "<cmd>GoToggleInlay<cr>", "Toggle inlay" },
             S = { "<cmd>GoFillStruct<cr>", "Autofill struct" },

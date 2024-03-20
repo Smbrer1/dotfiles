@@ -28,6 +28,7 @@ end
 
 local M = {
   'kevinhwang91/nvim-ufo',
+  enabled = false,
   dependencies = 'kevinhwang91/promise-async',
   config = function()
     vim.o.foldcolumn = '1' -- '0' is not bad
@@ -36,7 +37,7 @@ local M = {
     vim.o.foldenable = true
     require('ufo').setup {
       open_fold_hl_timeout = 150,
-      close_fold_kinds = { 'imports', 'comment' },
+      close_fold_kinds_for_ft = { 'imports', 'comment' },
       preview = {
         win_config = {
           border = 'none',

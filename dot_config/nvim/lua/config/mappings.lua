@@ -39,15 +39,15 @@ map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Floating diagnostic' 
 
 -- Buffer Navigation
 -- resizing splits
-map('n', '<M-H>', require('smart-splits').resize_left)
-map('n', '<M-J>', require('smart-splits').resize_down)
-map('n', '<M-K>', require('smart-splits').resize_up)
-map('n', '<M-L>', require('smart-splits').resize_right)
+map('n', '<M-H>', '<cmd>SmartResizeLeft<cr>', { desc = 'Resize left' }) --'require('smart-splits').resize_left)
+map('n', '<M-J>', '<cmd>SmartResizeDown<cr>', { desc = 'Resize down' }) --'require('smart-splits').resize_down)
+map('n', '<M-K>', '<cmd>SmartResizeUp<cr>', { desc = 'Resize up' }) --'require('smart-splits').resize_up)
+map('n', '<M-L>', '<cmd>SmartResizeRight<cr>', { desc = 'Resize right' }) --'require('smart-splits').resize_right)
 -- moving between splits
-map('n', '<M-h>', require('smart-splits').move_cursor_left)
-map('n', '<M-j>', require('smart-splits').move_cursor_down)
-map('n', '<M-k>', require('smart-splits').move_cursor_up)
-map('n', '<M-l>', require('smart-splits').move_cursor_right)
+map('n', '<M-h>', '<cmd>SmartCursorMoveLeft<cr>', { desc = 'Move left' }) --'('smart-splits').move_cursor_left)
+map('n', '<M-j>', '<cmd>SmartCursorMoveDown<cr>', { desc = 'Move down' }) --('smart-splits').move_cursor_down)
+map('n', '<M-k>', '<cmd>SmartCursorMoveUp<cr>', { desc = 'Move up' }) --('smart-splits').move_cursor_up)
+map('n', '<M-l>', '<cmd>SmartCursorMoveRight<cr>', { desc = 'Move right' }) --'('smart-splits').move_cursor_right)
 
 -- Inlay Hint
 if vim.lsp.inlay_hint then
@@ -65,8 +65,5 @@ map('t', '<esc>', '<c-\\><c-n>', { noremap = true })
 
 -- LSP hover and fold preview
 map('n', 'K', function()
-  local winid = require('ufo').peekFoldedLinesUnderCursor()
-  if not winid then
     vim.lsp.buf.hover()
-  end
 end, { desc = 'Hover doc or preview fold' })

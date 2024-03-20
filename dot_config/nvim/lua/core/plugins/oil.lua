@@ -4,7 +4,7 @@ return {
     require('oil').setup {
       -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
       -- Set to false if you still want to use netrw.
-      default_file_explorer = false,
+      default_file_explorer = true,
       -- Id is automatically added at the beginning, and name at the end
       -- See :help oil-columns
       columns = {
@@ -21,7 +21,7 @@ return {
       -- Window-local options to use for oil buffers
       win_options = {
         wrap = false,
-        signcolumn = 'no',
+        signcolumn = 'yes:2',
         cursorcolumn = false,
         foldcolumn = '0',
         spell = false,
@@ -42,7 +42,6 @@ return {
       cleanup_delay_ms = 2000,
       -- Set to true to autosave buffers that are updated with LSP willRenameFiles
       -- Set to "unmodified" to only save unmodified buffers
-      lsp_rename_autosave = false,
       -- Constrain the cursor to the editable parts of the oil buffer
       -- Set to `false` to disable, or "name" to keep it on the file names
       constrain_cursor = 'editable',
@@ -57,8 +56,9 @@ return {
         ['<CR>'] = 'actions.select',
         ['<C-s>'] = 'actions.select_vsplit',
         ['<C-h>'] = 'actions.select_split',
-        ['<C-t>'] = 'actions.select_tab',
-        ['<C-p>'] = 'actions.preview',
+        ['<C-t>'] = '<cmd>Grapple select index=2<cr>',
+        ['<C-p>'] = '<cmd>Grapple select index=4<cr>',
+        ['<C-v>'] = 'actions.preview',
         ['<C-c>'] = 'actions.close',
         ['<C-l>'] = 'actions.refresh',
         ['-'] = 'actions.parent',
@@ -69,6 +69,8 @@ return {
         ['gx'] = 'actions.open_external',
         ['g.'] = 'actions.toggle_hidden',
         ['g\\'] = 'actions.toggle_trash',
+        ['q'] = 'actions.close',
+        ['='] = '<cmd>write<cr>',
       },
       -- Set to false to disable all of the above keymaps
       use_default_keymaps = true,
@@ -93,10 +95,10 @@ return {
       -- Configuration for the floating window in oil.open_float
       float = {
         -- Padding around the floating window
-        border = 'none',
-        padding = 5,
-        max_width = 48,
-        max_height = 18,
+        border = 'solid',
+        padding = 10,
+        max_width = 60,
+        max_height = 20,
         win_options = {
           winblend = 0,
         },
@@ -139,13 +141,23 @@ return {
         max_height = { 10, 0.9 },
         min_height = { 5, 0.1 },
         height = nil,
-        border = 'rounded',
+        border = 'solid',
         minimized_border = 'none',
         win_options = {
           winblend = 0,
         },
       },
     }
-    vim.keymap.set('n', '<leader>fo', "<cmd>lua require('oil').toggle_float()<CR>", { desc = 'Oil' })
+    vim.keymap.set('n', '-', "<cmd>lua require('oil').toggle_float()<CR>", { desc = 'Oil' })
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'OilEnter',
+      callback = vim.schedule_wrap(function(args)
+        local oil = require 'oil'
+        local winid=vim.api.nvim_get_current_win()
+        if vim.api.nvim_get_current_buf() == args.data.buf and oil.get_cursor_entry() and not vim.api.nvim_win_get_config(winid).zindex then
+          oil.select { preview = true }
+        end
+      end),
+    })
   end,
 }
