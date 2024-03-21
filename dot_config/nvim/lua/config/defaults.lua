@@ -96,19 +96,8 @@ return {
       -- https://github.com/nvim-lualine/lualine.nvim#extensions
       extensions = { 'lazy', 'fugitive', 'nvim-dap-ui', 'quickfix', 'neo-tree' },
     },
-    mini_pick = {
-      mappings = {
-        move_down = '<C-j>',
-        move_up = '<C-k>',
-      },
-    },
     noice = {
       enable = true, -- Noice heavily changes the Neovim UI ...
-    },
-    spectre = {
-      -- enable advanced search and replace
-      -- https://github.com/nvim-pack/nvim-spectre
-      enable = true,
     },
     symbol_usage = {
       enable = true,
@@ -216,7 +205,6 @@ return {
     'javascript',
     'json',
     'lua',
-    'typst',
     'markdown',
     'markdown_inline',
     'query',

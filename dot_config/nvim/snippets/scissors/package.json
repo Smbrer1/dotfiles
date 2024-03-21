@@ -12,6 +12,12 @@
           "NeogitCommitMessage"
         ],
         "path": "./NeogitCommitMessage.json"
+      },
+      {
+        "language": [
+          "lua"
+        ],
+        "path": "./lua.json"
       }
     ]
   },

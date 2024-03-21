@@ -1,12 +1,12 @@
 local M = {
-  "ray-x/go.nvim",
+  'ray-x/go.nvim',
   dependencies = {
-    "ray-x/guihua.lua",
+    'ray-x/guihua.lua',
   },
-  ft = { "go", "gomod" },
+  ft = { 'go', 'gomod' },
   build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   config = function()
-    require("go").setup({
+    require('go').setup {
       -- NOTE: all LSP and formatting related options are disabeld.
       -- NOTE: is not related to core.plugins.lsp
       -- NOTE: manages LSP on its own
@@ -28,46 +28,48 @@ local M = {
       -- lsp_gofumpt = false, -- true: set default gofmt in gopls format to gofumpt
       lsp_on_attach = function(client, bufnr)
         -- attach my LSP configs keybindings
-        require("core.plugins.lsp.keys").on_attach(client, bufnr)
-        local wk = require("which-key")
+        require('core.plugins.lsp.keys').on_attach(client, bufnr)
+        local wk = require 'which-key'
         local default_options = { silent = true }
-        vim.keymap.set( "n", "<leader>tf", function() vim.lsp.buf.format({bufnr=bufnr}) end, {desc = "Format this file"})
+        vim.keymap.set('n', '<leader>tf', function()
+          vim.lsp.buf.format { bufnr = bufnr }
+        end, { desc = 'Format this file' })
         wk.register({
           c = {
-            name = "Coding",
-            a = { "<cmd>GoCodeAction<cr>", "Code action" },
-            l = { "<cmd>GoCodeLenAct<cr>", "Toggle Lens" },
-            e = { "<cmd>GoIfErr<cr>", "Add if err" },
+            name = 'Coding',
+            a = { '<cmd>GoCodeAction<cr>', 'Code action' },
+            l = { '<cmd>GoCodeLenAct<cr>', 'Toggle Lens' },
+            e = { '<cmd>GoIfErr<cr>', 'Add if err' },
             h = {
-              name = "Helper",
-              a = { "<cmd>GoAddTag<cr>", "Add tags to struct" },
-              r = { "<cmd>GoRMTag<cr>", "Remove tags to struct" },
-              c = { "<cmd>GoCoverage<cr>", "Test coverage" },
-              g = { "<cmd>lua require('go.comment').gen()<cr>", "Generate comment" },
-              v = { "<cmd>GoVet<cr>", "Go vet" },
-              t = { "<cmd>GoModTidy<cr>", "Go mod tidy" },
-              i = { "<cmd>GoModInit<cr>", "Go mod init" },
-              I = { "<cmd>GoImpl<cr>", "Go implement interface" },
+              name = 'Helper',
+              a = { '<cmd>GoAddTag<cr>', 'Add tags to struct' },
+              r = { '<cmd>GoRMTag<cr>', 'Remove tags to struct' },
+              c = { '<cmd>GoCoverage<cr>', 'Test coverage' },
+              g = { "<cmd>lua require('go.comment').gen()<cr>", 'Generate comment' },
+              v = { '<cmd>GoVet<cr>', 'Go vet' },
+              t = { '<cmd>GoModTidy<cr>', 'Go mod tidy' },
+              i = { '<cmd>GoModInit<cr>', 'Go mod init' },
+              I = { '<cmd>GoImpl<cr>', 'Go implement interface' },
             },
-            i = { "<cmd>GoToggleInlay<cr>", "Toggle inlay" },
-            S = { "<cmd>GoFillStruct<cr>", "Autofill struct" },
+            i = { '<cmd>GoToggleInlay<cr>', 'Toggle inlay' },
+            S = { '<cmd>GoFillStruct<cr>', 'Autofill struct' },
             t = {
-              name = "Tests",
-              r = { "<cmd>GoTest<cr>", "Run tests" },
-              a = { "<cmd>GoAlt!<cr>", "Open alt file" },
-              s = { "<cmd>GoAltS!<cr>", "Open alt file in split" },
-              v = { "<cmd>GoAltV!<cr>", "Open alt file in vertical split" },
-              u = { "<cmd>GoTestFunc<cr>", "Run test for current func" },
-              f = { "<cmd>GoTestFile<cr>", "Run test for current file" },
+              name = 'Tests',
+              r = { '<cmd>GoTest<cr>', 'Run tests' },
+              a = { '<cmd>GoAlt!<cr>', 'Open alt file' },
+              s = { '<cmd>GoAltS!<cr>', 'Open alt file in split' },
+              v = { '<cmd>GoAltV!<cr>', 'Open alt file in vertical split' },
+              u = { '<cmd>GoTestFunc<cr>', 'Run test for current func' },
+              f = { '<cmd>GoTestFile<cr>', 'Run test for current file' },
             },
           },
-        }, { prefix = "<leader>", mode = "n", default_options })
+        }, { prefix = '<leader>', mode = 'n', default_options })
         wk.register({
           c = {
             -- name = "Coding",
-            j = { "<cmd>'<,'>GoJson2Struct<cr>", "Json to struct" },
+            j = { "<cmd>'<,'>GoJson2Struct<cr>", 'Json to struct' },
           },
-        }, { prefix = "<leader>", mode = "v", default_options })
+        }, { prefix = '<leader>', mode = 'v', default_options })
       end, -- nil: use on_attach function defined in go/lsp.lua,
       --      when lsp_cfg is true
       -- if lsp_on_attach is a function: use this function as on_attach function for gopls
@@ -84,18 +86,20 @@ local M = {
       -- set to true: use gopls to format
       -- false if you want to use other formatter tool(e.g. efm, nulls)
       lsp_inlay_hints = {
-        enable = false,
+        enable = true,
+        only_current_line = false,
+        style = 'eol',
       },
       -- gopls_cmd = nil, -- if you need to specify gopls path and cmd, e.g {"/home/user/lsp/gopls", "-logfile","/var/log/gopls.log" }
       -- gopls_remote_auto = true, -- add -remote=auto to gopls
       -- gocoverage_sign = "█",
-      dap_debug = false,        -- set to false to disable dap
+      dap_debug = false, -- set to false to disable dap
       dap_debug_keymap = false, -- true: use keymap for debugger defined in go/dap.lua
       -- false: do not use keymap in go/dap.lua.  you must define your own.
-      dap_debug_gui = false,    -- set to true to enable dap gui, highly recommended
-      dap_debug_vt = false,     -- set to true to enable dap virtual text
+      dap_debug_gui = false, -- set to true to enable dap gui, highly recommended
+      dap_debug_vt = false, -- set to true to enable dap virtual text
       luasnip = true,
-    })
+    }
   end,
 }
 

@@ -36,11 +36,11 @@ local M = {
 
     ls.config.set_config { history = true, updateevents = 'TextChanged,TextChangedI' }
 
-    -- load lua snippets
-    lua.load { paths = os.getenv 'HOME' .. '/.config/nvim/snippets/' }
     -- load friendly-snippets
     -- this must be loaded after custom snippets or they get overwritte!
     -- https://github.com/L3MON4D3/LuaSnip/blob/b5a72f1fbde545be101fcd10b70bcd51ea4367de/Examples/snippets.lua#L497
+    vsc.lazy_load {}
+    vsc.lazy_load { paths = { vim.fn.stdpath 'config' .. '/snippets' } }
     vsc.lazy_load { paths = { vim.fn.stdpath 'config' .. '/snippets/scissors' } }
 
     -- expansion key

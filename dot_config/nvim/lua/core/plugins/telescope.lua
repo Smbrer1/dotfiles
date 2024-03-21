@@ -3,12 +3,6 @@ local M = {
   'nvim-telescope/telescope.nvim',
   cmd = 'Telescope',
   dependencies = {
-    'jvgrootveld/telescope-zoxide',
-    'crispgm/telescope-heading.nvim',
-    'nvim-telescope/telescope-symbols.nvim',
-    'nvim-telescope/telescope-file-browser.nvim',
-    'ahmedkhalf/project.nvim',
-    'lpoto/telescope-tasks.nvim',
     'ptethng/telescope-makefile',
     { 'nvim-telescope/telescope-fzf-native.nvim', enabled = conf.telescope.fzf_native.enable, build = 'make' },
   },
@@ -30,13 +24,10 @@ local M = {
     { '<leader>sc', '<cmd>Telescope commands<cr>', desc = 'Commands' },
     { '<leader>sg', '<cmd>Telescope live_grep<cr>', desc = 'Strings' },
     { '<leader>s?', '<cmd>Telescope help_tags<cr>', desc = 'Help' },
-    { '<leader>sh', '<cmd>Telescope heading<cr>', desc = 'Headings' },
     { '<leader>sk', '<cmd>Telescope keymaps<cr>', desc = 'Keymaps' },
     { '<leader>sO', '<cmd>Telescope vim_options<cr>', desc = 'Vim Options' },
-    { '<leader>sp', '<cmd>Telescope projects<cr>', desc = 'Projects' },
     { '<leader>sR', '<cmd>Telescope registers<cr>', desc = 'Registers' },
     { '<leader>ss', '<cmd>Telescope grep_string<cr>', desc = 'Word under cursor' },
-    { '<leader>sS', '<cmd>Telescope symbols<cr>', desc = 'Emoji' },
     { '<leader>s:', '<cmd>Telescope search_history<cr>', desc = 'Search History' },
     { '<leader>s;', '<cmd>Telescope command_history<cr>', desc = 'Command history' },
     {
@@ -49,22 +40,17 @@ local M = {
     { '<leader>gg', '<cmd>Telescope git_status<cr>', desc = 'Status' },
     { '<leader>gm', '<cmd>Telescope git_commits<cr>', desc = 'Commits' },
     -- files
-    { '<leader>fb', '<cmd>Telescope file_browser grouped=true<cr>', desc = 'Filebrowser' },
-    { '<leader>fz', '<cmd>Telescope zoxide list<cr>', desc = 'Zoxide' },
     { '<leader>fF', '<cmd>' .. require('utils.functions').project_files() .. '<cr>', desc = 'Find files (ignore git)' },
     { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'Find files ' },
     { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Recent files' },
     -- misc
     { '<leader>mt', '<cmd>Telescope<cr>', desc = 'Telescope' },
-    -- Other
-    { '<leader>cm', '<cmd>Telescope tasks<cr>', { desc = 'Tasks' } },
   },
   config = function()
     local telescope = require 'telescope'
     local telescopeConfig = require 'telescope.config'
     local actions = require 'telescope.actions'
     local action_layout = require 'telescope.actions.layout'
-    local fb_actions = require('telescope').extensions.file_browser.actions
     local icons = require 'utils.icons'
 
     local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
@@ -78,23 +64,6 @@ local M = {
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown {},
-        },
-        file_browser = {
-          theme = 'ivy',
-          hijack_netrw = false,
-          hidden = true,
-          mappings = {
-            i = {
-              ['<c-n>'] = fb_actions.create,
-              ['<c-r>'] = fb_actions.rename,
-              -- ["<c-h>"] = actions.which_key,
-              ['<c-h>'] = fb_actions.toggle_hidden,
-              ['<c-x>'] = fb_actions.remove,
-              ['<c-p>'] = fb_actions.move,
-              ['<c-y>'] = fb_actions.copy,
-              ['<c-a>'] = fb_actions.select_all,
-            },
-          },
         },
       },
       pickers = {
@@ -166,11 +135,6 @@ local M = {
       },
     }
 
-    telescope.load_extension 'projects'
-    telescope.load_extension 'zoxide'
-    telescope.load_extension 'heading'
-    telescope.load_extension 'tasks'
-    require('telescope').extensions.tasks.generators.default.all()
     if conf.noice.enable then
       telescope.load_extension 'noice'
     end
