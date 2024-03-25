@@ -33,6 +33,7 @@ for _, lsp in ipairs(conf.lsp_servers) do
       Lua = lsp_settings.lua,
       yaml = lsp_settings.yaml,
       gopls = lsp_settings.gopls,
+      jedi_language_server = lsp_settings.jedi,
     },
   })
 end
@@ -41,3 +42,6 @@ vlsp.handlers["textDocument/publishDiagnostics"] = vlsp.with(vlsp.diagnostic.on_
   underline = false,
 })
 
+vim.diagnostic.config({
+  update_in_insert = true
+})

@@ -2,8 +2,6 @@ local M = {}
 
 M._keys = {
   { "<leader>lD", vim.lsp.buf.declaration,   desc = "Goto Declaration" },
-  { "<leader>ll", vim.diagnostic.open_float, desc = "Line Diagnostics" },
-  -- { "<leader>lR", vim.lsp.buf.rename, desc = "Rename", has = "rename" },
   {
     "<leader>lR",
     function()
@@ -14,7 +12,7 @@ M._keys = {
     desc = "Rename",
     has = "rename",
   },
-  { "<leader>li", "<cmd>LspInfo<cr>",                  desc = "Lsp Info" },
+  { "<leader>lI", "<cmd>LspInfo<cr>",                  desc = "Lsp Info" },
   {
     "<leader>ld",
     function()
@@ -25,7 +23,7 @@ M._keys = {
   },
   { "<leader>lr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
   {
-    "<leader>lI",
+    "<leader>li",
     function()
       require("telescope.builtin").lsp_implementations({ reuse_win = true })
     end,
@@ -38,7 +36,6 @@ M._keys = {
     end,
     desc = "Goto Type Definition",
   },
-  { "<leader>lk",  vim.lsp.buf.hover,                                                       desc = "Hover" },
   { "<leader>lS",  vim.lsp.buf.signature_help,                                              desc = "Signature Help",       has = "signatureHelp" },
   -- { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
   { "<leader>ln",  vim.diagnostic.goto_next,                                                desc = "Next Diagnostic" },

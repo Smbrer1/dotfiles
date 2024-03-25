@@ -226,7 +226,7 @@ return {
     'bufls',
     'gopls',
     'marksman',
-    'pylsp',
+    'jedi_language_server',
     'lua_ls',
     'tailwindcss',
     'tsserver',
@@ -246,7 +246,6 @@ return {
     'yamllint',
     -- DAP
     'delve',
-    'debugpy',
     'codelldb',
   },
 }

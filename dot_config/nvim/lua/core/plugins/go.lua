@@ -3,7 +3,7 @@ local M = {
   dependencies = {
     'ray-x/guihua.lua',
   },
-  ft = { 'go', 'gomod' },
+  ft = { 'go', 'gomod', 'gosum', 'gotmpl', 'gohtmltmpl', 'gotexttmpl'},
   build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   config = function()
     require('go').setup {
@@ -31,9 +31,9 @@ local M = {
         require('core.plugins.lsp.keys').on_attach(client, bufnr)
         local wk = require 'which-key'
         local default_options = { silent = true }
-        vim.keymap.set('n', '<leader>tf', function()
-          vim.lsp.buf.format { bufnr = bufnr }
-        end, { desc = 'Format this file' })
+        vim.keymap.set('n', '<leader>F', function()
+          require("conform").format{ bufnr = bufnr }
+        end, { desc = 'Format file' })
         wk.register({
           c = {
             name = 'Coding',
@@ -86,7 +86,7 @@ local M = {
       -- set to true: use gopls to format
       -- false if you want to use other formatter tool(e.g. efm, nulls)
       lsp_inlay_hints = {
-        enable = true,
+        enable = false,
         only_current_line = false,
         style = 'eol',
       },

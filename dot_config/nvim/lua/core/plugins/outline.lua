@@ -8,7 +8,7 @@ local M = {
     },
   },
   keys = {
-    { '<leader>to', '<cmd>Outline<cr>', desc = 'Toggle Outline' },
+    { '<leader>co', '<cmd>Outline<cr>', desc = 'Code Outline' },
   },
 }
 

@@ -49,7 +49,7 @@ M.get_python_path = function(workspace)
 end
 
 M.get_LSP_clients = function()
-  return vim.lsp.buf_get_clients(0)
+  return vim.lsp.get_clients()
 end
 
 return M

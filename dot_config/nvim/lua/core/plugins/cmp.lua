@@ -8,7 +8,6 @@ local M = {
     'hrsh7th/cmp-cmdline',
     'hrsh7th/cmp-calc',
     'lukas-reineke/cmp-rg',
-    'hrsh7th/cmp-nvim-lsp-signature-help',
     'saadparwaiz1/cmp_luasnip',
   },
   config = function()
@@ -18,7 +17,6 @@ local M = {
 
     local sources = {
       { name = 'nvim_lsp' },
-      { name = 'nvim_lsp_signature_help' },
       { name = 'codeium' },
       { name = 'buffer', keyword_length = 5 },
       { name = 'luasnip' },
@@ -80,7 +78,12 @@ local M = {
 
     -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
     cmp.setup.cmdline('/', {
-      mapping = cmp.mapping.preset.cmdline(),
+      mapping = {
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<C-y>'] = cmp.mapping.confirm { select = true },
+        ['<C-BS>'] = cmp.mapping.complete(),
+      },
       sources = {
         { name = 'buffer' },
       },
@@ -88,7 +91,12 @@ local M = {
 
     -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
     cmp.setup.cmdline(':', {
-      mapping = cmp.mapping.preset.cmdline(),
+      mapping = {
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<C-y>'] = cmp.mapping.confirm { select = true },
+        ['<C-BS>'] = cmp.mapping.complete(),
+      },
       sources = cmp.config.sources({
         { name = 'path' },
       }, {

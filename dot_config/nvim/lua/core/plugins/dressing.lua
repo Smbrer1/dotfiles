@@ -1,6 +1,16 @@
 local M = {
   "stevearc/dressing.nvim",
   lazy = true,
+  opts = {
+    input = {
+      border= "solid"
+    },
+    select = {
+      buitin = {
+        border = "solid",
+      },
+    },
+  },
   -- From https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/ui.lua#L34
   init = function()
     ---@diagnostic disable-next-line: duplicate-set-field

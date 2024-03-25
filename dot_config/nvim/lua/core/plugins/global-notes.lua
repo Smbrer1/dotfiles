@@ -77,7 +77,7 @@ local M = {
       },
     }
 
-    vim.keymap.set('n', '<leader>mm', function()
+    vim.keymap.set('n', '<leader>n', function()
       global_note.toggle_note 'project_local'
     end, {
       desc = 'Toggle project note',

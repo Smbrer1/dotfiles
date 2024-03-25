@@ -23,7 +23,7 @@ local M = {
         --   end,
         -- },
       },
-      lualine_x = { 'fancy_macro' },
+      lualine_x = { { 'grapple' }, { 'fancy_macro' } },
       lualine_y = { { 'fancy_progress' }, { 'fancy_location' } },
       lualine_z = { { 'fancy_lsp_servers' } },
     },

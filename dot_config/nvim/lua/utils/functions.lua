@@ -208,4 +208,8 @@ M.search_todos = function()
   end
 end
 
+M.is_empty = function(str)
+  return str == nil or str == ''
+end
+
 return M
