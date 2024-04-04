@@ -9,6 +9,7 @@ import Taskbar from "./buttons/Taskbar"
 import Workspaces from "./buttons/Workspaces"
 import ScreenRecord from "./buttons/ScreenRecord"
 import Messages from "./buttons/Messages"
+import KeyboardLayout from "./buttons/KeyboardLayout"
 import options from "options"
 
 const { start, center, end } = options.bar.layout
@@ -17,6 +18,7 @@ const pos = options.bar.position.bind()
 export type BarWidget = keyof typeof widget
 
 const widget = {
+    keyboard: KeyboardLayout,
     colorpicker: ColorPicker,
     date: Date,
     launcher: Launcher,

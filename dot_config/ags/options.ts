@@ -77,6 +77,7 @@ const options = mkOptions(OPTIONS, {
                 "media",
                 "expander",
                 "systray",
+                // "keyboard",    //  TODO add keyboard layout support
                 "colorpicker",
                 "screenrecord",
                 "system",
@@ -171,7 +172,7 @@ const options = mkOptions(OPTIONS, {
     powermenu: {
         sleep: opt("systemctl suspend"),
         reboot: opt("systemctl reboot"),
-        logout: opt("pkill Hyprland"),
+        logout: opt("hyprlock"),
         shutdown: opt("shutdown now"),
         layout: opt<"line" | "box">("line"),
         labels: opt(true),

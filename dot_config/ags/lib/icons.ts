@@ -146,4 +146,5 @@ export default {
     wallpaper: {
       random: "image-x-generic-symbolic"
     },
+    language: "preferences-desktop-locale-symbolic",
 }
