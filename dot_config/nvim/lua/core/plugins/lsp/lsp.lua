@@ -5,15 +5,16 @@ local lsp_settings = require("core.plugins.lsp.settings")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+
+local vlsp = vim.lsp
+-- enable autocompletion via nvim-cmp
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
 -- NVIM UFO
 capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true
 }
-
-local vlsp = vim.lsp
--- enable autocompletion via nvim-cmp
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 require("utils.functions").on_attach(function(client, buffer)
   require("core.plugins.lsp.keys").on_attach(client, buffer)
@@ -34,6 +35,7 @@ for _, lsp in ipairs(conf.lsp_servers) do
       yaml = lsp_settings.yaml,
       gopls = lsp_settings.gopls,
       jedi_language_server = lsp_settings.jedi,
+      sqlls = lsp_settings.sqlls,
     },
   })
 end

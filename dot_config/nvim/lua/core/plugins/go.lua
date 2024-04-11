@@ -70,6 +70,7 @@ local M = {
             j = { "<cmd>'<,'>GoJson2Struct<cr>", 'Json to struct' },
           },
         }, { prefix = '<leader>', mode = 'v', default_options })
+        require('legendary').setup({ extensions = { which_key = { auto_register = true } } })
       end, -- nil: use on_attach function defined in go/lsp.lua,
       --      when lsp_cfg is true
       -- if lsp_on_attach is a function: use this function as on_attach function for gopls

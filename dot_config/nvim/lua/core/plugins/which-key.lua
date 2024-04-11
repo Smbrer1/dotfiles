@@ -1,7 +1,6 @@
 local icons = require 'utils.icons'
 local M = {
   'folke/which-key.nvim',
-  event = 'VeryLazy',
   opts = {
     icons = {
       breadcrumb = icons.arrows.DoubleArrowRight, -- symbol used in the command line area that shows your active key combo

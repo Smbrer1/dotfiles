@@ -20,6 +20,7 @@ local M = {
       lua = { 'stylua' },
       python = { 'black' },
       go = { 'goimports', 'gofumpt' },
+      sql = {'sqlfluff'}
     },
     -- Set up format-on-save
     format_on_save = function(_)

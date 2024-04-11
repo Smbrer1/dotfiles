@@ -1,0 +1,38 @@
+[pyprland]
+plugins = ["scratchpads", "expose", "fetch_client_menu"]
+
+[scratchpads.telegram]
+command = "hyprctl dispatch exec [float] telegram-desktop"
+animation = "fromTop"
+class = "org.telegram.desktop"
+class_match = true
+process_tracking = false
+size = "60% 60%"
+
+[scratchpads.music]
+animation = "fromBottom"
+command = "hyprctl dispatch exec [float] yandex-music"
+class = "YandexMusic"
+class_match = true
+process_tracking = false
+lazy = true
+size = "50% 50%"
+unfocus = "hide"
+
+[scratchpads.postman]
+animation = "fromBottom"
+command = "hyprctl dispatch exec [float] postman"
+class = "Postman"
+class_match = true
+process_tracking = false
+lazy = true
+size = "60% 60%"
+
+[scratchpads.discord]
+animation = "fromBottom"
+command = "hyprctl dispatch exec [float] /usr/bin/firefoxpwa site launch 01HV6J04K19GN10K87SZJFHA51 --protocol"
+lazy = true
+class = "FFPWA-01HV6J04K19GN10K87SZJFHA51"
+class_match = true
+process_tracking = false
+size = "60% 60%"

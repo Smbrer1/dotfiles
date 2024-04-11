@@ -29,7 +29,7 @@ return {
     relativenumber = true, -- set relative numbered lines
     pumblend = 10, -- Popup blend
     pumheight = 10, -- Maximum number of entries in a popup
-    scrolloff = 10, -- Minimal number of screen lines to keep above and below the cursor
+    scrolloff = 99, -- Minimal number of screen lines to keep above and below the cursor
     shiftround = true, -- Round indent
     shiftwidth = 2, -- the number of spaces inserted for each indentation
     tabstop = 2, -- how many columns a tab counts for
@@ -232,6 +232,7 @@ return {
     'tsserver',
     'yamlls',
     'phpactor',
+    'sqlls',
   },
 
   -- Tools that should be installed by Mason
@@ -247,5 +248,6 @@ return {
     -- DAP
     'delve',
     'codelldb',
+    'sqlfluff',
   },
 }
