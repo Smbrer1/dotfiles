@@ -1,0 +1,6 @@
+0000000000000000000000000000000000000000 52ebbfd7791745603e514ae9a9aaeebb3cae2d17 Sokolov Artem <smbrer1@gmail.com> 1712997309 +0300	commit (initial): sync
+52ebbfd7791745603e514ae9a9aaeebb3cae2d17 7f3b5db7e73296f393205c4b6b5f160de0ea93af Sokolov Artem <smbrer1@gmail.com> 1713024462 +0300	commit: sync
+7f3b5db7e73296f393205c4b6b5f160de0ea93af 63cd6b2e8a2e756a1f46a8d0dcd14768f0b23e14 Sokolov Artem <smbrer1@gmail.com> 1713544892 +0300	commit: beautify+remove useless
+63cd6b2e8a2e756a1f46a8d0dcd14768f0b23e14 80cfc1d40cb821656c73577d2a98ac60f3431755 Sokolov Artem <smbrer1@gmail.com> 1714147643 +0300	commit: legendary
+80cfc1d40cb821656c73577d2a98ac60f3431755 c98912798d3e808032a5a56f36a1b606e4efc80e Sokolov Artem <smbrer1@gmail.com> 1714857550 +0300	commit: feat(fzf): moved from telescope to fzf-lua
+c98912798d3e808032a5a56f36a1b606e4efc80e 89e7a6f375b265f60b902663479b860ea006a214 Sokolov Artem <smbrer1@gmail.com> 1717362181 +0300	commit: commit before deletion

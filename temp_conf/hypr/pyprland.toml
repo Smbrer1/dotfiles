@@ -1,0 +1,42 @@
+[pyprland]
+plugins = [
+  "scratchpads",
+  "expose",
+  "fetch_client_menu",
+  "lost_windows",
+  "workspaces_follow_focus",
+  "layout_center",
+  "toggle_special",
+]
+
+[scratchpads.music]
+animation = "fromBottom"
+command = "hyprctl dispatch exec [float] yandex-music"
+class = "YandexMusic"
+match_by = "class"
+process_tracking = false
+size = "50% 50%"
+unfocus = "hide"
+
+# [scratchpads.discord]
+# animation = "fromBottom"
+# command = "hyprctl dispatch exec [float] '/usr/bin/firefoxpwa site launch 01HV6J04K19GN10K87SZJFHA51 --protocol'"
+# class = "FFPWA-01HV6J04K19GN10K87SZJFHA51"
+# match_by = "initialTitle"
+# initialTitle = "DiscordPWA"
+# process_tracking = false
+# size = "60% 60%"
+
+[expose]
+include_special = false
+
+[layout_center]
+margin = 50
+# offset = [20,0]
+next = "movefocus r"
+next2 = "movefocus u"
+prev = "movefocus l"
+prev2= "movefocus d"
+
+[workspaces_follow_focus]
+max_workspaces = 4 # number of workspaces before cycling
